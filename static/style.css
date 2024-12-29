@@ -15,6 +15,7 @@
 
 
 * {
+    box-sizing: border-box;
     font-family: 'Alibaba', Arial, sans-serif;
     margin: 0;
     padding: 0;
@@ -45,7 +46,7 @@ header {
     flex-wrap: wrap;
 }
 .logo img {
-    width: 60PX;
+    width: 60px;
     height: auto;
 }
 .navbar ul {
@@ -105,6 +106,83 @@ header {
 }
 body{
     padding-top: 100px;
+}
+
+/* For Tablet and Mobile */
+@media (max-width: 1024px) {
+
+    .navbar ul {
+        gap: 30px;
+        justify-content: flex-end;  /* Align the navbar items to the right */
+        margin-left: 0;  /* Remove extra margin */
+    }
+
+    .navbar ul li {
+        display: inline;
+    }
+
+    .search-form {
+        flex-wrap: wrap; /* Allow search items to stack */
+        gap: 5px;  /* Reduce gap between items */
+    }
+
+    .search-form input[type="text"] {
+        font-size: 0.9em; /* Slightly smaller font size */
+    }
+
+    .search-form button {
+        font-size: 0.9em;
+        padding: 5px 12px;  /* Reduce padding */
+    }
+
+    .lang-switcher a img {
+        width: 28px;
+        height: 28px;  /* Smaller flag icon */
+    }
+}
+
+/* For Small Screens (Mobile) */
+@media (max-width: 768px) {
+    /* Logo adjustment */
+    .logo img {
+        width: 40px;  /* Smaller logo for mobile */
+    }
+
+    /* Navbar stacked vertically */
+    .navbar ul {
+        align-items: flex-end;  /* Stack navbar items vertically */
+        margin-left: 0;
+        gap: 10px;  /* Reduce gap for mobile */
+    }
+
+    .navbar ul li {
+        margin-bottom: 10px; /* Space between navbar items */
+    }
+
+    /* Search bar adjustment */
+    .search-form {
+        width: 100%;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 5px;
+    }
+
+    .search-form input[type="text"] {
+        width: 100%;
+        font-size: 0.9em;
+    }
+    
+    .search-form button {
+        width: 100%;
+        font-size: 0.9em;
+        padding: 5px 12px;
+    }
+
+    /* Language switcher icon adjustment */
+    .lang-switcher a img {
+        width: 30px;
+        height: 30px;
+    }
 }
 
 /* Slogan Section */
@@ -277,8 +355,10 @@ body{
 .description-section {
     width: 30%;
 }
+
 /* Slider Container */
 .slider-container {
+    padding: 20px 0; /* Add vertical padding for spacing */
     position: relative;
     overflow: hidden;
     width: 100%;
@@ -293,7 +373,8 @@ body{
 
 /* Service Cards */
 .service-card {
-    flex: 0 0 20%; /* Each card takes up 30% of the width */
+    flex: 0 0 25%; /* Each card takes up 30% of the width */
+    height: auto;
     margin: 10px;
     overflow: hidden;
     background-color: #fff;
@@ -302,6 +383,8 @@ body{
     text-align: center;
     padding: 20px;
     transition: box-shadow 0.3s ease;
+    min-height: 400px;
+    justify-content: center;
 }
 
 .service-card:hover {
@@ -327,38 +410,111 @@ body{
 
 .service-card h3 {
     font-size: 1.5rem;
-    margin: 10px 0;
+    margin: 20px 0;
     color: #222;}
 
 .service-card p {
     font-size: 1rem;
+    line-height: 2;
+    color: #504e57b6;
+}
+
+/* Slider Button Bar */
+.slider-container {
+    padding: 20px 0; /* Add vertical padding for spacing */
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    margin-top: 30px;
+}
+
+/* Slider */
+.slider {
+    display: flex;
+    transition: transform 0.5s ease;
+}
+
+/* Service Cards */
+.service-card {
+    flex: 0 0 25%; /* Each card takes up 30% of the width */
+    height: auto;
+    margin: 10px;
+    overflow: hidden;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    padding: 20px;
+    transition: box-shadow 0.3s ease;
+    min-height: 400px;
+    justify-content: center;
+}
+
+.service-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3); /* Darker shadow on hover */
+}
+
+.service-card img.service-icon {
+    display: block;
+    width: 100px;
+    height: 100px; /* Set fixed dimensions for the frame */
+    margin: 0 auto 15px;
+    border: 3px solid #fdf9cd; /* Frame border */
+    border-radius: 50%; /* Make the frame circular */
+    transition: transform 0.3s ease, border-color 0.3s ease; /* Smooth transition */
+    object-fit: cover; /* Ensure image scales well inside the frame */
+}
+
+.service-card:hover img  {
+    transform: scale(1.2); /* Grow the image on hover */
+    border-color: #f4c200; /* Change the border color on hover */
+}
+
+.service-card h3 {
+    font-size: 1.5rem;
+    margin: 20px 0;
+    color: #222;}
+
+.service-card p {
+    font-size: 1rem;
+    line-height: 2;
     color: #504e57b6;
 }
 
 /* Slider Button Bar */
 .slider-btn-bar {
     position: absolute;
-    top: 50%;
+    top: 85%;
     left: 0;
-    width: 60px;
-    background-color: #f4c200;
     display: flex;
-    flex-direction: column;
-    justify-content: center;
+    flex-direction: row;
+    justify-content: flex-end;
     align-items: center;
+    padding: 0;
+    gap: 10px;
+    z-index: 10;
+    width: auto;
+    height: 200%;
+    background-color: #fdf9cd;
+    /* background-color: #005ca8; */
     transform: translateY(-50%);
 }
 
 .slider-btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+
     background-color: #005ca8;
     border: none;
     border-radius: 50%;
     width: 40px;
     height: 40px;
-    font-size: 1.2rem;
-    color: #333;
+    font-size: 0.8rem;
+    color: #fff;
     cursor: pointer;
-    margin: 10px 0;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
@@ -366,6 +522,17 @@ body{
     background-color: #FFDD00;
     color: #0056A6;
     border: 1px solid #0056A6;
+}
+
+.slider-btn:disabled {
+    opacity: 0.5; /* Make the button semi-transparent when disabled */
+    cursor: default; /* Change cursor to indicate the button is not clickable */
+}
+
+.slider-btn:disabled:hover {
+    background-color: #005ca8; /* Keep the original background */
+    color: #fff; /* Keep the original color */
+    border: none; /* Remove hover border effect */
 }
 
 .slider-container .swiper-pagination-bullet {
@@ -400,3 +567,79 @@ body{
         transform: translateX(0); /* Center the cards on small screens */
     }
 }
+
+
+/* Footer container */
+footer {
+    background-color: #005ca8; /* Blue background */
+    color: #fff;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+/* Footer content section */
+.footer-content {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    margin-left: 30px;
+    margin-right: 30px;
+}
+
+/* Links on the left */
+.footer-links {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-left: 600px;
+    gap: 50px;
+}
+
+.footer-links a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: bold;
+    /* margin-bottom: 8px; */
+    transition: color 0.3s;
+}
+
+.footer-links a:hover {
+    color: #FFD700; /* Hover color */
+}
+
+/* Footer image on the right */
+.footer-image img {
+    width: 120px; /* Set the width of the image */
+    height: auto;
+    margin-left: 20px;
+}
+
+/* Social media icons on the left corner */
+.social-icon {
+    border-radius: 50%;
+}
+
+.footer-social {
+    margin-top: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px; /* Adds consistent spacing between items */
+}
+
+.footer-social .social-icon svg {
+    width: 50px;
+    height: 50px;
+    transition: fill 0.3s;
+    border-radius: 50%;
+}
+
+.footer-social .social-icon:hover #innerSVGColor {
+    fill: #FFD700;
+}
+

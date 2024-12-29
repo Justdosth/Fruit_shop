@@ -1,13 +1,14 @@
 // import Swiper from 'swiper/bundle';
 // import 'swiper/swiper-bundle.min.css';
 
-
 document.addEventListener('DOMContentLoaded', () => {
     console.log('Welcome to Your Website!');
     // JavaScript for Slider
     new Swiper('.swiper-container', {
-        loop: true,
-        spaceBetween: 30,
+        slidesPerView: 1,  // Adjust this as needed
+        spaceBetween: 30,  // Adjust the space between slides as needed
+        loop: false,
+        slideToClickedSlide: true,
     
         // Pagination bullets
         pagination: {
@@ -21,6 +22,25 @@ document.addEventListener('DOMContentLoaded', () => {
         nextEl: '.right-btn',
         prevEl: '.left-btn',
         },
+
+        on: {
+            // On slide change, update button states
+            slideChange: function () {
+              // Disable "prev" button if on the first slide
+              if (swiper.isBeginning) {
+                document.querySelector('.left-btn').disabled = true;
+              } else {
+                document.querySelector('.left-btn').disabled = false;
+              }
+              
+              // Disable "next" button if on the last slide
+              if (swiper.isEnd) {
+                document.querySelector('.right-btn').disabled = true;
+              } else {
+                document.querySelector('.right-btn').disabled = false;
+              }
+            }
+          },
 
         // Responsive breakpoints
         breakpoints:{
