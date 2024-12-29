@@ -1,0 +1,402 @@
+/* @font-face {
+    font-family: 'Alibaba';
+    src: url('/static/fonts/Alibaba-Regular') format('truetype');
+} */
+@font-face {
+	font-family: Alibaba;
+	font-style: normal;
+	font-weight: normal;
+	src: url('fonts/eot/Alibaba-Regular.eot');
+	src: url('fonts/eot/Alibaba-Regular.eot?#iefix') format('embedded-opentype'),
+		 url('fonts/woff2/Alibaba-Regular.woff2') format('woff2'),
+		 url('fonts/woff/Alibaba-Regular.woff') format('woff'),
+		 url('fonts/ttf/Alibaba-Regular.ttf') format('truetype');
+}
+
+
+* {
+    font-family: 'Alibaba', Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+
+/* Header */
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    width: 100%;
+    background-color: #FFDD00;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-sizing: border-box;
+}
+.header-container {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-right: 30px;
+    margin-left: 30px;
+    flex-wrap: wrap;
+}
+.logo img {
+    width: 60PX;
+    height: auto;
+}
+.navbar ul {
+    list-style-type: none;
+    margin-left: 400px;
+    padding: 0;
+    display: flex;
+    gap: 50px;
+}
+.navbar ul li {
+    display: inline;
+}
+.navbar ul li a {
+    text-decoration: none;
+    color: #0056A6;
+    font-weight: bold;
+    transition: color 0.3s ease;
+}
+.navbar ul li a:hover {
+    color: #003E7A;
+}
+.lang-switcher a img {
+    display: flex;
+    border-radius: 40%;
+    width: 32px;
+    height: 32px;
+    transition: transform 0.3s ease;
+}
+.lang-switcher a img:hover {
+    transform: scale(1.1); /* Slightly enlarge on hover */
+}
+.search-form {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.search-form input[type="text"] {
+    padding: 5px 10px;
+    border: 1px solid #ccc;
+    border-radius: 40px;
+    font-size: 1em;
+}
+.search-form button {
+    background-color: #0056A6;
+    border: 1px solid transparent; 
+    color: white;
+    padding: 5px 15px;
+    border-radius: 40px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    box-sizing: border-box;
+}
+.search-form button:hover {
+    background-color: #FFDD00;
+    color: #0056A6;
+    border: 1px solid #0056A6;
+}
+body{
+    padding-top: 100px;
+}
+
+/* Slogan Section */
+.slogan-wrapper {
+    background-color: #fdf9cd;  /* Color for the space between the section and curve */
+}
+
+.slogan-section {
+    background-color:  #004075;
+    text-align: center;
+    padding: 200px 20px;
+    position: relative;
+    overflow: hidden;
+    border-bottom-left-radius: 50% 40px;
+    border-bottom-right-radius: 50% 40px;
+    border-bottom: 0px solid #fdf9cd;
+}
+
+.slogan-section h1 {
+    font-size: 4em;
+    font-weight: bold;
+    color: #ccc;
+    margin: 0 0 20px;
+    animation: fadeInDown 1s ease-out;
+}
+
+.slogan-section p {
+    font-size: 2.2em;
+    color: white;
+    margin: 0 0 30px;
+    animation: fadeInUp 1.5s ease-out; /* Animation */
+}
+
+/* Highlight Text Styling */
+.highlight-text {
+    position: relative;
+    display: inline-block;
+    text-align: center;
+}
+
+.highlight-text svg {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -30px; /* Position the curve below the text */
+    width: 100%; /* Make the curve span the full text width */
+    height: auto;
+}
+
+.underline-svg path {
+    stroke: #FFD700; /* Yellow color */
+    stroke-width: 8; /* Adjust the thickness */
+    fill: none; /* No fill, just the curve */
+}
+
+
+
+.slogan-section .cta-button {
+    background-color: #FFDD00;
+    color: #004075;
+    padding: 10px 40px;
+    font-size: 1em;
+    text-decoration: none;
+    border-radius: 40px;
+    display: inline-block;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    margin-top: 35px;
+    animation: bounce 2s infinite; /* Animation */
+}
+
+.slogan-section .cta-button:hover {
+    background-color: #005ca8;
+    color: #FFDD00;
+    transform: scale(1.05);
+}
+
+/* Keyframes for Animations */
+@keyframes fadeInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% {
+        transform: translateY(0);
+    }
+    40% {
+        transform: translateY(-10px);
+    }
+    60% {
+        transform: translateY(-5px);
+    }
+}
+
+/* General Section Styling */
+.services-section {
+    background-color: #fdf9cd;
+    padding: 60px 80px;
+    direction: rtl;  /* Right to Left text alignment */
+    position: relative;
+}
+
+/* Title and Description */
+.services-header {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin-bottom: 30px;
+    position: relative;
+}
+
+.title-section h2 {
+    font-size: 6rem;
+    color: #005ca8;
+    font-weight: bold;
+    position: relative;
+    line-height: 1.2;
+    text-align: right;
+}
+.products {
+    display: block;
+    margin: 0;
+    position: relative;
+    z-index: 1;
+}
+
+.products .underline-svg {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -10px; /* Position the curve below the text */
+    width: 100%;
+    height: auto;
+    z-index: -1;
+}
+
+
+.our {
+    display: block;
+    position: relative;
+    margin-top: -65px;
+    margin-right: 400px;
+    z-index: 1;
+    text-align: start;
+}
+
+.description-section .section-description {
+    font-size: 1.2rem;
+    color: #005ca8;
+    text-align: right;
+}
+
+.description-section {
+    width: 30%;
+}
+/* Slider Container */
+.slider-container {
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    margin-top: 30px;
+}
+
+/* Slider */
+.slider {
+    display: flex;
+    transition: transform 0.5s ease;
+}
+
+/* Service Cards */
+.service-card {
+    flex: 0 0 20%; /* Each card takes up 30% of the width */
+    margin: 10px;
+    overflow: hidden;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    padding: 20px;
+    transition: box-shadow 0.3s ease;
+}
+
+.service-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3); /* Darker shadow on hover */
+}
+
+.service-card img.service-icon {
+    display: block;
+    width: 100px;
+    height: 100px; /* Set fixed dimensions for the frame */
+    margin: 0 auto 15px;
+    border: 3px solid #fdf9cd; /* Frame border */
+    border-radius: 50%; /* Make the frame circular */
+    transition: transform 0.3s ease, border-color 0.3s ease; /* Smooth transition */
+    object-fit: cover; /* Ensure image scales well inside the frame */
+}
+
+.service-card:hover img  {
+    transform: scale(1.2); /* Grow the image on hover */
+    border-color: #f4c200; /* Change the border color on hover */
+}
+
+.service-card h3 {
+    font-size: 1.5rem;
+    margin: 10px 0;
+    color: #222;}
+
+.service-card p {
+    font-size: 1rem;
+    color: #504e57b6;
+}
+
+/* Slider Button Bar */
+.slider-btn-bar {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 60px;
+    background-color: #f4c200;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    transform: translateY(-50%);
+}
+
+.slider-btn {
+    background-color: #005ca8;
+    border: none;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    font-size: 1.2rem;
+    color: #333;
+    cursor: pointer;
+    margin: 10px 0;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.slider-btn:hover {
+    background-color: #FFDD00;
+    color: #0056A6;
+    border: 1px solid #0056A6;
+}
+
+.slider-container .swiper-pagination-bullet {
+    height: 13px;
+    width: 13px;
+    opacity: 0.5;
+    margin-top: 10px;
+    background: #0056A6;
+}
+
+.card-wrapper .swiper-pagination-bullet-active {
+    opacity: 1;
+}
+
+/* Responsive Design for Smaller Screens */
+@media (max-width: 1024px) {
+    .service-card {
+        flex: 0 0 45%; /* Cards take up more width on smaller screens */
+    }
+
+    .slider {
+        transform: translateX(-15%); /* Adjust for smaller screens */
+    }
+}
+
+@media (max-width: 768px) {
+    .service-card {
+        flex: 0 0 100%; /* Cards take full width on very small screens */
+    }
+
+    .slider {
+        transform: translateX(0); /* Center the cards on small screens */
+    }
+}

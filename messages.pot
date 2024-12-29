@@ -1,0 +1,63 @@
+# Translations template for PROJECT.
+# Copyright (C) 2024 ORGANIZATION
+# This file is distributed under the same license as the PROJECT project.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2024.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PROJECT VERSION\n"
+"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
+"POT-Creation-Date: 2024-12-22 16:26+0330\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.16.0\n"
+
+#: templates/index.html:6
+msgid "چاتابا"
+msgstr ""
+
+#: templates/index.html:14
+msgid "لوگو"
+msgstr ""
+
+#: templates/index.html:19
+msgid "درباره ما"
+msgstr ""
+
+#: templates/index.html:20
+msgid "خدمات"
+msgstr ""
+
+#: templates/index.html:21
+msgid "تماس با ما"
+msgstr ""
+
+#: templates/index.html:31
+msgid "جستجو..."
+msgstr ""
+
+#: templates/index.html:32
+msgid "جستجو"
+msgstr ""
+
+#: templates/index.html:37
+msgid "کشف تفاوت‌ها"
+msgstr ""
+
+#: templates/index.html:38
+msgid "محصولات ما را بررسی کنید و ببینید چه چیزی ما را متمایز می‌کند."
+msgstr ""
+
+#: templates/index.html:39
+msgid "بیشتر بدانید"
+msgstr ""
+
+#: templates/index.html:42
+msgid "وب سایت شما. کلیه حقوق محفوظ است."
+msgstr ""
+

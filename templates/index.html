@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="{{ lang }}" dir="{{ direction }}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ _('چاتابا') }}</title>
+    <link rel="icon" href="/static/images/logo.png" type="image/x-icon">
+    <link rel="stylesheet" href="static/style.css">
+    <!-- Linking google fonts for icons-->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <!-- Linking to SwiperJS CSS-->
+    <link rel="stylesheet" href="static/swiper-bundle.css">
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <!-- Logo -->
+            <div class="logo">
+                <a href="{{ url_for('index') }}">
+                    <img src="/static/images/logo.png" alt="{{ _('لوگو') }}" />
+                </a>
+            </div>
+            <!-- Navigation -->
+            <nav class="navbar">
+                <ul>
+                    <li><a href="#about">{{ _('درباره ما') }}</a></li>
+                    <li><a href="#services">{{ _('خدمات') }}</a></li>
+                    <li><a href="#contact">{{ _('تماس با ما') }}</a></li>
+                </ul>
+            </nav>
+            <!-- Language Switcher -->
+            <div class="lang-switcher">
+                <a href="{{ url_for('index', lang='en' if lang == 'fa' else 'fa') }}">
+                    <img src="https://flagsapi.com/{{ 'US' if lang == 'fa' else 'IR' }}/shiny/32.png" alt="{{ _('Change Language') }}">
+                </a>
+            </div>            
+            <!-- Search Box -->
+            <form class="search-form" method="get" action="/search">
+                <input type="text" name="query" placeholder="{{ _('جستجو...') }}" />
+                <button type="submit">{{ _('جستجو') }}</button>
+            </form>
+        </div>
+    </header>
+    <div class="slogan-wrapper">
+        <div class="slogan-section">
+            <h1>{{ _('به دنیای ما خوش آمدید!') }}</h1>
+            <p>
+                {{ _('اینجا جاییست که ') }}
+                <span class="highlight-text">
+                    {{ _('خلاقیت، کیفیت و اعتماد ') }}
+                    <svg viewBox="0 0 300 40" class="underline-svg" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M10,10 Q150,40 290,10" stroke="#FFD700" stroke-width="5" fill="none"/>
+                    </svg>
+                </span>
+                {{ _('در کنار هم معنا پیدا می‌کنند.') }}
+            </p>        
+            <!-- <p>اینجا جاییست که خلاقیت، کیفیت و اعتماد در کنار هم معنا پیدا می‌کنند.</p> -->
+            <a href="#about" class="cta-button">{{ _('بیشتر بدانید') }}</a>
+        </div>
+    </div>
+
+    <section id="services" class="services-section">
+            <div class="services-header">
+                <div class="description-section">
+                    <p class="section-description">
+                        ما مجموعه‌ای از بهترین محصولات را ارائه می‌دهیم که با کیفیت عالی و تنوع بی‌نظیر طراحی شده‌اند. 
+                        هدف ما ارائه محصولاتی است که به تمامی نیازهای شما پاسخ دهد. 
+                        تجربه خرید شما در اولویت ما قرار دارد و تلاش می‌کنیم که خدماتی بی‌نظیر را فراهم کنیم.
+                    </p>
+                </div>
+                <div class="title-section">
+                    <h2>
+                        <span class="products">
+                            {{ _('محصولات') }}
+                            <svg viewBox="0 0 300 40" class="underline-svg" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M35,15 Q150,40 290,10" stroke="#FFD700" stroke-width="5" fill="none"/>
+                            </svg>
+                        </span>
+                        <span class="our">
+                            {{ _('ما') }}
+                        </span>
+                    </h2>
+                </div>
+            </div>
+            <div class="slider-container swiper-container">
+
+                <div class="slider-btn-bar">
+                    <button class="slider-btn right-btn material-icons">
+                        arrow_forward
+                    </button>
+                    <button class="slider-btn left-btn material-icons">
+                        arrow_back
+                    </button>
+                </div>
+
+                <div class="slider swiper-wrapper">
+                    <div class="service-card swiper-slide">
+                        <img src="static/images/Adviye.png" alt="ادویه" class="service-icon">
+                        <h3>ادویه</h3>
+                        <p>انواع ادویه‌های تازه و معطر، مناسب برای طعم‌دهی به غذاهای شما.</p>
+                    </div>
+                    <div class="service-card swiper-slide">
+                        <img src="static/images/Ajil.png" alt="آجیل" class="service-icon">
+                        <h3>آجیل</h3>
+                        <p>مجموعه‌ای از آجیل‌های با کیفیت، تازه و مغذی برای هر مناسبتی.</p>
+                    </div>
+                    <div class="service-card swiper-slide">
+                        <img src="static/images/Hobobat.png" alt="حبوبات" class="service-icon">
+                        <h3>حبوبات</h3>
+                        <p>حبوبات تازه و سالم برای پخت غذاهای ایرانی و بین‌المللی.</p>
+                    </div>
+                    <div class="service-card swiper-slide">
+                        <img src="static/images/Mive.png" alt="میوه" class="service-icon">
+                        <h3>میوه</h3>
+                        <p>میوه‌های تازه و با کیفیت برای مصرف روزانه و پذیرایی.</p>
+                    </div>
+                    <div class="service-card swiper-slide">
+                        <img src="static/images/Mive_khoshk.png" alt="میوه خشک" class="service-icon">
+                        <h3>میوه خشک</h3>
+                        <p>میوه‌های خشک شده با طعمی دلپذیر و مناسب برای میان وعده.</p>
+                    </div>
+                </div>
+                <!-- <div class="swiper-pagination"></div> -->
+            </div>
+    </section>    
+
+    
+    <footer>
+        <p>&copy; 2024 {{ _('وب سایت شما. کلیه حقوق محفوظ است.') }}</p>
+    </footer>
+    <script src="/static/script.js"></script>
+    <!-- Linking SwiperJS script-->
+    <script src="static/swiper-bundle.min.js"></script>
+</body>
+</html>
