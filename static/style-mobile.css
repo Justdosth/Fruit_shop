@@ -13,7 +13,6 @@
 		 url('fonts/ttf/Alibaba-Regular.ttf') format('truetype');
 }
 
-
 * {
     box-sizing: border-box;
     font-family: 'Alibaba', Arial, sans-serif;
@@ -30,175 +29,188 @@ header {
     z-index: 1000;
     width: 100%;
     background-color: #FFDD00;
-    padding: 10px 20px;
     display: flex;
     justify-content: space-between;
     align-items: center;
     box-sizing: border-box;
+    margin: 0;
+    padding: 0;
 }
 .header-container {
     width: 100%;
     display: flex;
-    justify-content: flex-start;
+    justify-content: space-between;
     align-items: center;
-    margin-right: 30px;
-    margin-left: 30px;
     flex-wrap: wrap;
     position: relative;
+    margin-left: 15px;
+    margin-right: 15px;
+    padding: 0;
 }
 .logo img {
     width: 60px;
-    height: auto;
-}
-.navbar {
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-start;
     align-items: center;
-    gap: 50px;
-    width:auto;
-    margin-right: 50px;
+    height: auto;
+    margin-top: 5px;
 }
-.navbar.active {
-    display: block;
-}
-.navbar ul {
-    list-style-type: none;
-    margin-left: 200px;
-    padding: 0;
-    display: flex;
-    gap: 50px;
-}
-.navbar ul li {
-    display: inline;
-}
-.navbar ul li a {
-    position: relative;
-    display: inline-block;
-    text-decoration: none;
-    color: #0056A6;
-    font-weight: bold;
-    padding-bottom: 5px;
-    transition: color 0.3s ease;
-}
-.navbar ul li a::after {
-    content: '';
-    position: absolute;
-    left: 0;
-    bottom: -37px;
-    width: 0;
-    height: 2px;
-    background-color: #003E7A;
-    transition: width 0.3s ease;
-}
-
-.navbar ul li a:hover::after {
-    width: 100%; /* Full width on hover */
-}
-.navbar ul li a:hover {
-    color: #003E7A;
-}
-
 /* Hamburger Menu */
 .hamburger-menu {
-    display: none;  /* Hide hamburger by default */
+    display: flex;
     cursor: pointer;
     width: 30px;
-    height: 25px;
+    height: 20px;
     flex-direction: column;
     justify-content: space-between;
+    position: relative;
 }
+
 .hamburger-menu .bar {
-    height: 5px;
+    height: 0.15rem;
     width: 100%;
     background-color: #003E7A;
     border-radius: 5px;
+    position: absolute;
+    transition: all 0.3s ease;
 }
 
-.search-form,
-.lang-switcher {
-    display: flex;
-    align-items: center;
-    margin-left: auto;
-    margin-right: 20px;
+.bar1 {
+    top: 0;
 }
-.search-form {
-    display: flex;
+
+.bar2,
+.bar3 {
+    top: 8px;
+}
+
+.bar4 {
+    bottom: 0;
+}
+
+.hamburger-menu.active .bar1 {
+    transform: rotate(45deg);
+    transform-origin: 15%;
+    width: 33px;
+}
+
+.hamburger-menu.active .bar2 {
+    transform: translateX(-40px);
+    background-color: transparent;
+}
+
+.hamburger-menu.active .bar3 {
+    transform: translateX(40px);
+    background-color: transparent;
+}
+
+.hamburger-menu.active .bar4 {
+    transform: rotate(-45deg);
+    transform-origin: 10%;
+    width: 33px;
+}
+
+.navbar, .search-form, .lang-switcher {
+    display: none;
+    position: absolute;
+    top: 88px;
+    left: 0;
+    width: 100%;
+    background-color: #fdf9cd;
+    padding: 10px 15px;
+    z-index: 50;
+    height: calc(100vh - 88px);
+    opacity: 0;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.search-form, .lang-switcher {
+    position: fixed;
+    z-index: 55;
+    padding: 10px 15px;
+    flex-direction: row;
     align-items: center;
+    justify-content: space-between;
     gap: 10px;
-    margin-right: 380px;
 }
+
 .search-form input[type="text"] {
-    padding: 5px 10px;
+    flex: 1;
+    margin-right: 10px;
+    padding: 8px 12px;
     border: 1px solid #ccc;
     border-radius: 40px;
     font-size: 1em;
 }
+
 .search-form button {
     background-color: #0056A6;
-    border: 1px solid transparent; 
+    border: 1px solid transparent;
     color: white;
-    padding: 5px 15px;
     border-radius: 40px;
     cursor: pointer;
+    font-size: 1em;
+    padding: 8px 20px;
     transition: background-color 0.3s ease;
-    box-sizing: border-box;
 }
+
 .search-form button:hover {
     background-color: #FFDD00;
     color: #0056A6;
     border: 1px solid #0056A6;
 }
+
 .lang-switcher {
     display: flex;
     align-items: center;
+    justify-content: center;
+    flex-direction: row;
+    margin-left: 10px;
 }
-.lang-switcher a img {
+
+.navbar {
+    flex-direction: column;
+    align-items: flex-start;
+    overflow-y: auto;
+    position: fixed;
+    top: calc(88px + 50px);
+    height: calc(100vh - (88px + 50px));
+    z-index: 50;
+    gap: 10px;
+}
+
+.navbar ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    flex-direction: column;
     display: flex;
-    border-radius: 40%;
-    width: 32px;
-    height: 32px;
-    transition: transform 0.3s ease;
-}
-.lang-switcher a img:hover {
-    transform: scale(1.1); /* Slightly enlarge on hover */
-}
-body{
-    padding-top: 100px;
+    gap: 20px;
 }
 
-/* For Tablet and Mobile */
-@media (max-width: 1024px) {
-
-    .navbar ul {
-        gap: 30px;
-        justify-content: flex-start;  /* Align the navbar items to the right */
-        margin-left: 0;  /* Remove extra margin */
-    }
-
-    .navbar ul li {
-        display: inline;
-    }
-
-    .search-form {
-        flex-wrap: wrap; /* Allow search items to stack */
-        gap: 5px;  /* Reduce gap between items */
-    }
-
-    .search-form input[type="text"] {
-        font-size: 0.9em; /* Slightly smaller font size */
-    }
-
-    .search-form button {
-        font-size: 0.9em;
-        padding: 5px 12px;  /* Reduce padding */
-    }
-
-    .lang-switcher a img {
-        width: 28px;
-        height: 28px;  /* Smaller flag icon */
-    }
+.navbar ul li a {
+    text-decoration: none;
+    color: #0056A6;
+    font-weight: bold;
+    transition: color 0.3s ease;
 }
+
+.navbar.active, .search-form.active, .lang-switcher.active {
+    display: flex;
+    opacity: 1;
+    transform: translateY(0);
+}
+.search-form.active, .lang-switcher.active {
+    display: flex;
+    justify-content: row;
+    align-items: flex-start;
+    gap: 15px;
+    width: auto;
+}
+
+body {
+    padding-top: 80px;
+}
+
+
 
 /* Slogan Section */
 .slogan-wrapper {
@@ -658,3 +670,10 @@ footer {
     fill: #FFD700;
 }
 
+body.menu-open {
+    overflow: hidden; /* Prevent scrolling */
+    height: 100vh; /* Limit height to viewport */
+}
+body.menu-open > *:not(header) {
+    display: none; /* Hide all elements except the header */
+}

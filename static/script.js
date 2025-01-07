@@ -1,6 +1,23 @@
 // import Swiper from 'swiper/bundle';
 // import 'swiper/swiper-bundle.min.css';
 
+function toggleHamburgerMenu() {
+  var hamburgerMenu = document.querySelector('.hamburger-menu');
+  hamburgerMenu.classList.toggle('active');
+  
+  // Toggle the visibility of the menu items
+  var navbar = document.querySelector('.navbar');
+  var searchForm = document.querySelector('.search-form');
+  var langSwitcher = document.querySelector('.lang-switcher');
+  
+  navbar.classList.toggle('active');
+  searchForm.classList.toggle('active');
+  langSwitcher.classList.toggle('active');
+
+  // Toggle the menu-open class on the body element
+  document.body.classList.toggle('menu-open');
+}
+
 document.addEventListener('DOMContentLoaded', () => {
     console.log('Welcome to Your Website!');
     // JavaScript for Slider
@@ -58,6 +75,26 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 
+
+// Optional: Hide navbar when clicking outside
+document.addEventListener('click', function (event) {
+  
+  const navbar = document.querySelector('.navbar');
+  const burger = document.querySelector('.hamburger-menu');
+  const searchForm = document.querySelector('.search-form');
+  const langSwitcher = document.querySelector('.lang-switcher');
+
+  // Close the navbar if the click is outside the navbar or burger menu
+  if (!navbar.contains(event.target) && !burger.contains(event.target)) {
+      burger.classList.remove('active')
+      navbar.classList.remove('active');
+      searchForm.classList.remove('active');
+      langSwitcher.classList.remove('active');
+      document.body.classList.remove('menu-open');
+      
+  }
+});
+
 document.addEventListener('DOMContentLoaded', () => {
     const slogan = document.querySelector('.slogan-section h1');
     const text = slogan.textContent;
@@ -75,6 +112,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 
+// function toggleNavbar() {
+//   const navbar = document.querySelector('.navbar');
+//   navbar.classList.toggle('active');
+// }
 // function updateSlider() {
 //     const slider = document.querySelector('.slider');
 //     const cardWidth = slider.querySelector('.service-card').offsetWidth;
