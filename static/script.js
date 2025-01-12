@@ -1,101 +1,123 @@
-// import Swiper from 'swiper/bundle';
-// import 'swiper/swiper-bundle.min.css';
-
+// Toggle Hamburger Menu
 function toggleHamburgerMenu() {
-  var hamburgerMenu = document.querySelector('.hamburger-menu');
-  hamburgerMenu.classList.toggle('active');
-  
-  // Toggle the visibility of the menu items
-  var navbar = document.querySelector('.navbar');
-  var searchForm = document.querySelector('.search-form');
-  var langSwitcher = document.querySelector('.lang-switcher');
-  
-  navbar.classList.toggle('active');
-  searchForm.classList.toggle('active');
-  langSwitcher.classList.toggle('active');
+    const hamburgerMenu = document.querySelector('.hamburger-menu');
+    const navbar = document.querySelector('.navbar');
+    const searchForm = document.querySelector('.search-form');
+    const langSwitcher = document.querySelector('.lang-switcher');
 
-  // Toggle the menu-open class on the body element
-  document.body.classList.toggle('menu-open');
+    hamburgerMenu.classList.toggle('active');
+    navbar.classList.toggle('active');
+    searchForm.classList.toggle('active');
+    langSwitcher.classList.toggle('active');
+    document.body.classList.toggle('menu-open');
 }
 
-document.addEventListener('DOMContentLoaded', () => {
-    console.log('Welcome to Your Website!');
-    // JavaScript for Slider
-    new Swiper('.swiper-container', {
-        slidesPerView: 1,  // Adjust this as needed
-        spaceBetween: 30,  // Adjust the space between slides as needed
+// Initialize Swiper Slider
+function initializeSwiper() {
+    const swiper = new Swiper('.swiper-container', {
+        slidesPerView: 1,
+        spaceBetween: 30,
         loop: false,
         slideToClickedSlide: true,
-    
-        // Pagination bullets
+
         pagination: {
-        el: '.swiper-pagination',
-        clickable: true,
-        dynamicBullets: true,
+            el: '.swiper-pagination',
+            clickable: true,
+            dynamicBullets: true,
         },
-    
-        // Navigation arrows
+
         navigation: {
-        nextEl: '.right-btn',
-        prevEl: '.left-btn',
+            nextEl: '.right-btn',
+            prevEl: '.left-btn',
         },
 
         on: {
-            // On slide change, update button states
             slideChange: function () {
-              // Disable "prev" button if on the first slide
-              if (swiper.isBeginning) {
-                document.querySelector('.left-btn').disabled = true;
-              } else {
-                document.querySelector('.left-btn').disabled = false;
-              }
-              
-              // Disable "next" button if on the last slide
-              if (swiper.isEnd) {
-                document.querySelector('.right-btn').disabled = true;
-              } else {
-                document.querySelector('.right-btn').disabled = false;
-              }
-            }
-          },
+                document.querySelector('.left-btn').disabled = this.isBeginning;
+                document.querySelector('.right-btn').disabled = this.isEnd;
+            },
+        },
 
-        // Responsive breakpoints
-        breakpoints:{
-        0: {
-            slidesPerView: 1
-            },
-        768: {
-            slidesPerView: 2
-            },
-        1024: {
-            slidesPerView: 3
-            },
-        }
-    
+        breakpoints: {
+            0: { slidesPerView: 1 },
+            768: { slidesPerView: 2 },
+            1024: { slidesPerView: 3 },
+        },
     });
-});
 
+    // Initial button state
+    document.querySelector('.left-btn').disabled = swiper.isBeginning;
+    document.querySelector('.right-btn').disabled = swiper.isEnd;
+}
 
-// Optional: Hide navbar when clicking outside
-document.addEventListener('click', function (event) {
-  
-  const navbar = document.querySelector('.navbar');
-  const burger = document.querySelector('.hamburger-menu');
-  const searchForm = document.querySelector('.search-form');
-  const langSwitcher = document.querySelector('.lang-switcher');
+// Close Menu and Scroll to Section
+function setupNavbarLinks() {
+    const navbarLinks = document.querySelectorAll('.navbar ul li a');
+    const hamburgerMenu = document.querySelector('.hamburger-menu');
+    const navbar = document.querySelector('.navbar');
+    const searchForm = document.querySelector('.search-form');
+    const langSwitcher = document.querySelector('.lang-switcher');
+    const productsLink = document.querySelector('a[href="#products"]');
 
-  // Close the navbar if the click is outside the navbar or burger menu
-  if (!navbar.contains(event.target) && !burger.contains(event.target)) {
-      burger.classList.remove('active')
-      navbar.classList.remove('active');
-      searchForm.classList.remove('active');
-      langSwitcher.classList.remove('active');
-      document.body.classList.remove('menu-open');
-      
-  }
-});
+    navbarLinks.forEach(link => {
+        link.addEventListener('click', (e) => {
+            e.preventDefault();
 
-document.addEventListener('DOMContentLoaded', () => {
+            const targetId = link.getAttribute('href').substring(1);
+            const targetElement = document.getElementById(targetId);
+
+            if (targetElement) {
+                targetElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+
+            // Close the menu
+            hamburgerMenu.classList.remove('active');
+            navbar.classList.remove('active');
+            searchForm.classList.remove('active');
+            langSwitcher.classList.remove('active');
+            document.body.classList.remove('menu-open');
+        });
+    });
+
+     // Close the menu and scroll to the "محصولات" section when clicking on the "محصولات" link
+     productsLink.addEventListener('click', function (e) {
+        e.preventDefault();
+
+        // Close the menu
+        hamburgerMenu.classList.remove('active');
+        navbar.classList.remove('active');
+        searchForm.classList.remove('active');
+        langSwitcher.classList.remove('active');
+        document.body.classList.remove('menu-open');
+
+        const targetElement = document.getElementById('products');
+
+        if (targetElement) {
+            targetElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+    });
+}
+
+// Close Navbar When Clicking Outside
+function setupOutsideClickListener() {
+    document.addEventListener('click', (event) => {
+        const navbar = document.querySelector('.navbar');
+        const burger = document.querySelector('.hamburger-menu');
+        const searchForm = document.querySelector('.search-form');
+        const langSwitcher = document.querySelector('.lang-switcher');
+
+        if (!navbar.contains(event.target) && !burger.contains(event.target) && !searchForm.contains(event.target)) {
+            burger.classList.remove('active');
+            navbar.classList.remove('active');
+            searchForm.classList.remove('active');
+            langSwitcher.classList.remove('active');
+            document.body.classList.remove('menu-open');
+        }
+    });
+}
+
+// Animate Slogan Text
+function animateSloganText() {
     const slogan = document.querySelector('.slogan-section h1');
     const text = slogan.textContent;
     slogan.textContent = '';
@@ -106,41 +128,14 @@ document.addEventListener('DOMContentLoaded', () => {
         span.style.animationDelay = `${i * 50}ms`;
         slogan.appendChild(span);
     });
+}
+
+// Initialize All Functions on DOMContentLoaded
+document.addEventListener('DOMContentLoaded', () => {
+    console.log('Welcome to Your Website!');
+
+    initializeSwiper();
+    setupNavbarLinks();
+    setupOutsideClickListener();
+    animateSloganText();
 });
-
-
-
-
-
-// function toggleNavbar() {
-//   const navbar = document.querySelector('.navbar');
-//   navbar.classList.toggle('active');
-// }
-// function updateSlider() {
-//     const slider = document.querySelector('.slider');
-//     const cardWidth = slider.querySelector('.service-card').offsetWidth;
-//     const gap = 20; // Adjust if needed
-//     slider.style.transform = 'translateX(-${(cardWidth + gap) * currentSlide}px)';
-// }
-
-// function nextSlide() {
-//     const slider = document.querySelector('.slider');
-//     const totalCards = slider.children.length;
-//     const visibleCards = Math.floor(slider.parentElement.offsetWidth / slider.querySelector('.service-card').offsetWidth);
-//     if (currentSlide < totalCards - visibleCards) {
-//         currentSlide++;
-//     } else {
-//         currentSlide = 0; // Loop to start
-//     }
-//     updateSlider();
-// }
-
-// function prevSlide() {
-//     const slider = document.querySelector('.slider');
-//     if (currentSlide > 0) {
-//         currentSlide--;
-//     } else {
-//         currentSlide = slider.children.length - 1; // Loop to last
-//     }
-//     updateSlider();
-// }
