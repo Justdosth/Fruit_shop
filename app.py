@@ -25,6 +25,8 @@ def get_direction(lang):
 def index():
     lang = get_locale()  # Get the current language
     direction = get_direction(lang)  # Determine the text direction
+    # latest_posts = get_latest_posts(4)  # Fetch the latest 4 posts from DB
+    # , latest_posts=latest_posts
     return render_template('index.html', lang=lang, direction=direction)
 
 @app.route('/search')
