@@ -146,18 +146,37 @@
 <section id="blog" class="blog-section">
     <div class="blog-container">
         <div class="blog-content">
-            <h2>{{ _('وبلاگ ما') }}</h2>
-            <p>
+            <div class="title-section">
+                <h2>
+                    <span id="products" class="products">
+                        {{ _('وبلاگ') }}
+                        <svg viewBox="0 0 300 40" class="underline-svg underline-svg-blog" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M110,5 Q150,40 290,10" stroke="#FFD700" stroke-width="5" fill="none"/>
+                        </svg>
+                    </span>
+                    <span class="our-blog">
+                        {{ _('ما') }}
+                    </span>
+                </h2>
+            </div>
+            <p class="description-blog">
                 {{ _('مطالب جذاب و آموزشی درباره محصولات و سبک زندگی سالم را در وبلاگ ما بخوانید.') }}
             </p>
             <a href="/blog" class="blog-btn">{{ _('مطالب بیشتر') }}</a>
         </div>
 
+        <!-- Featured Blog Card (Latest Blog Post) -->
         <div class="blog-main-card">
-            <img src="static/images/featured-blog.jpg" alt="مقاله ویژه">
-            <h3>عنوان مقاله ویژه</h3>
-            <p>توضیح کوتاه درباره این مقاله ویژه. اطلاعات مفید و خواندنی.</p>
-            <a href="#">بیشتر بخوانید</a>
+            <a href="{{ latest_blog['link'] }}">
+                <img src="{{ latest_blog['image'] }}" alt="{{ latest_blog['title'] }}">
+                <h3>{{ latest_blog['title'] }}</h3>
+                <p>{{ latest_blog['description'] }}</p>
+                <div class="tags">
+                    {% for tag in latest_blog['tags'] %}
+                        <span class="tag">{{ tag }}</span>
+                    {% endfor %}
+                </div>
+            </a>
         </div>
     </div>
 

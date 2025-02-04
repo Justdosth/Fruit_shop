@@ -9,13 +9,55 @@ app.config['BABEL_DEFAULT_LOCALE'] = 'fa' # Default language is Persian
 
 babel = Babel(app)
 
-# Simulate some blog posts (you can replace this with a database or other data source)
+# Blog data including latest blog as part of the list
 blog_posts = [
-    {'id': 1, 'title': 'Chiquita’s New Sunburst Gold Pineapple is as Good as Gold!', 'content': 'This is the content of the first blog post.'},
-    {'id': 2, 'title': 'Second Blog Post', 'content': 'Content for the second blog post.'}
+    {
+        "title": "عنوان مقاله ویژه",
+        "image": "static/images/featured-blog.jpg",
+        "link": "/blog/latest",
+        "description": "توضیح کوتاه درباره این مقاله ویژه. اطلاعات مفید و خواندنی.",
+        "tags": ["ویژه", "مهم"],
+        "date": "12 بهمن 1402",
+        "reading_time": "5 دقیقه"
+    },
+    {
+        "title": "مقاله ۱",
+        "image": "static/images/blog1.jpg",
+        "link": "/blog/1",
+        "description": "توضیح مختصر درباره مقاله ۱.",
+        "tags": ["تکنولوژی", "کسب و کار"],
+        "date": "10 بهمن 1402",
+        "reading_time": "4 دقیقه"
+    },
+    {
+        "title": "مقاله ۲",
+        "image": "static/images/blog2.jpg",
+        "link": "/blog/2",
+        "description": "نگاهی به جدیدترین روندهای طراحی.",
+        "tags": ["طراحی", "خلاقیت"],
+        "date": "8 بهمن 1402",
+        "reading_time": "6 دقیقه"
+    },
+    {
+        "title": "مقاله ۳",
+        "image": "static/images/blog3.jpg",
+        "link": "/blog/3",
+        "description": "نکات مهم برای موفقیت در بازاریابی.",
+        "tags": ["بازاریابی", "استارتاپ"],
+        "date": "6 بهمن 1402",
+        "reading_time": "7 دقیقه"
+    },
+    {
+        "title": "مقاله ۴",
+        "image": "static/images/blog4.jpg",
+        "link": "/blog/4",
+        "description": "راهنمای کامل یادگیری برنامه‌نویسی.",
+        "tags": ["برنامه‌نویسی", "آموزش"],
+        "date": "4 بهمن 1402",
+        "reading_time": "3 دقیقه"
+    }
 ]
-# Funct
-# ion to get the current locale
+# Function to get the current locale
 def get_locale():
     return request.args.get('lang', app.config['BABEL_DEFAULT_LOCALE'])
 
@@ -34,7 +76,7 @@ def index():
     direction = get_direction(lang)  # Determine the text direction
     # latest_posts = get_latest_posts(4)  # Fetch the latest 4 posts from DB
     # , latest_posts=latest_posts
-    return render_template('index.html', lang=lang, direction=direction)
+    return render_template('index.html', lang=lang, direction=direction, blogs=blog_posts[1:], latest_blog=blog_posts[0])
 
 @app.route('/blog')
 def blog():
