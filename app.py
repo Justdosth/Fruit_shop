@@ -9,7 +9,13 @@ app.config['BABEL_DEFAULT_LOCALE'] = 'fa' # Default language is Persian
 
 babel = Babel(app)
 
-# Function to get the current locale
+# Simulate some blog posts (you can replace this with a database or other data source)
+blog_posts = [
+    {'id': 1, 'title': 'Chiquita’s New Sunburst Gold Pineapple is as Good as Gold!', 'content': 'This is the content of the first blog post.'},
+    {'id': 2, 'title': 'Second Blog Post', 'content': 'Content for the second blog post.'}
+]
+# Funct
+# ion to get the current locale
 def get_locale():
     return request.args.get('lang', app.config['BABEL_DEFAULT_LOCALE'])
 
@@ -21,11 +27,23 @@ def get_direction(lang):
     return 'rtl' if lang == 'fa' else 'ltr'
 
 
+
 @app.route('/')
 def index():
     lang = get_locale()  # Get the current language
     direction = get_direction(lang)  # Determine the text direction
     return render_template('index.html', lang=lang, direction=direction)
+
+@app.route('/blog')
+def blog():
+    lang = get_locale()  # Get the current language
+    direction = get_direction(lang)  # Determine the text direction
+    return render_template('blog.html', lang=lang, direction=direction, blog_posts=blog_posts)
+
+@app.route('/blog/<int:post_id>')
+def show_post(post_id):
+    post = next(post for post in blog_posts if post['id'] == post_id)
+    return render_template('blog_post.html', blog_post=post)
 
 @app.route('/search')
 def search():
