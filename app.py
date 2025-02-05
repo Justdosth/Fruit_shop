@@ -76,7 +76,7 @@ def index():
     direction = get_direction(lang)  # Determine the text direction
     # latest_posts = get_latest_posts(4)  # Fetch the latest 4 posts from DB
     # , latest_posts=latest_posts
-    return render_template('index.html', lang=lang, direction=direction, blogs=blog_posts[1:], latest_blog=blog_posts[0])
+    return render_template('index.html', lang=lang, direction=direction, blogs=blog_posts, latest_blog=blog_posts[0])
 
 @app.route('/blog')
 def blog():

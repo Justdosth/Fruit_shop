@@ -36,6 +36,7 @@
                 <ul>
                     <li><a href="#about">{{ _('درباره ما') }}</a></li>
                     <li><a href="#products">{{ _('محصولات') }}</a></li>
+                    <li><a href="#blog">{{ _('وبلاگ') }}</a></li>
                     <li><a href="#contact">{{ _('تماس با ما') }}</a></li>
                 </ul>
             </nav>
@@ -150,8 +151,8 @@
                 <h2>
                     <span id="products" class="products">
                         {{ _('وبلاگ') }}
-                        <svg viewBox="0 0 300 40" class="underline-svg underline-svg-blog" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M110,5 Q150,40 290,10" stroke="#FFD700" stroke-width="5" fill="none"/>
+                        <svg viewBox="0 5 300 40" class="underline-svg underline-svg-blog" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M150,8 Q200,40 290,10" stroke="#FFD700" stroke-width="5" fill="none"/>
                         </svg>
                     </span>
                     <span class="our-blog">
@@ -162,50 +163,57 @@
             <p class="description-blog">
                 {{ _('مطالب جذاب و آموزشی درباره محصولات و سبک زندگی سالم را در وبلاگ ما بخوانید.') }}
             </p>
-            <a href="/blog" class="blog-btn">{{ _('مطالب بیشتر') }}</a>
+            <a href="/blog" class="blog-btn">{{ _('مشاهده تمامی پست ها') }}</a>
         </div>
 
         <!-- Featured Blog Card (Latest Blog Post) -->
         <div class="blog-main-card">
             <a href="{{ latest_blog['link'] }}">
-                <img src="{{ latest_blog['image'] }}" alt="{{ latest_blog['title'] }}">
-                <h3>{{ latest_blog['title'] }}</h3>
-                <p>{{ latest_blog['description'] }}</p>
-                <div class="tags">
+                <div class="blog-image-wrapper">
+                    <img src="{{ latest_blog['image'] }}" alt="{{ latest_blog['title'] }}">
+                </div>
+                <div class="blog-tags">
                     {% for tag in latest_blog['tags'] %}
-                        <span class="tag">{{ tag }}</span>
+                        <span class="blog-tag">{{ tag }}</span>
                     {% endfor %}
                 </div>
+                <h3>{{ latest_blog['title'] }}</h3>
+                <div class="blog-footer">
+                    <div class="blog-date">{{ latest_blog['date'] }}</div>
+                    <div class="blog-read">{{ latest_blog['reading_time'] }}</div>
+                </div>
+                <!-- <p>{{ latest_blog['description'] }}</p> -->
+
             </a>
         </div>
     </div>
 
+    <!-- Other Blog Cards -->
     <div class="blog-cards-container">
-        <div class="blog-card">
-            <img src="static/images/blog1.jpg" alt="مقاله ۱">
-            <h4>عنوان مقاله ۱</h4>
-            <a href="#">مطالعه مقاله</a>
-        </div>
-        <div class="blog-card">
-            <img src="static/images/blog2.jpg" alt="مقاله ۲">
-            <h4>عنوان مقاله ۲</h4>
-            <a href="#">مطالعه مقاله</a>
-        </div>
-        <div class="blog-card">
-            <img src="static/images/blog3.jpg" alt="مقاله ۳">
-            <h4>عنوان مقاله ۳</h4>
-            <a href="#">مطالعه مقاله</a>
-        </div>
-        <div class="blog-card">
-            <img src="static/images/blog4.jpg" alt="مقاله ۴">
-            <h4>عنوان مقاله ۴</h4>
-            <a href="#">مطالعه مقاله</a>
-        </div>
+        {% for blog in blogs[1:5] %}
+            <a href="{{ blog['link'] }}">
+                <div class="blog-card">
+                    <div class="blog-image-wrapper">
+                        <img src="{{ blog['image'] }}" alt="{{ blog['title'] }}">
+                    </div>
+                    <div class="blog-tags">
+                        {% for tag in blog['tags'] %}
+                            <span class="blog-tag">{{ tag }}</span>
+                        {% endfor %}
+                    </div>
+                    <h4>{{ blog['title'] }}</h4>
+                    <div class="blog-footer">
+                        <div class="blog-date">{{ blog['date'] }}</div>
+                        <div class="blog-read">{{ blog['reading_time'] }}</div>
+                    </div>
+                </div>
+            </a>
+        {% endfor %}
     </div>
 </section>
 
 <footer>
-    <div class="footer-content">
+    <div id="contact" class="footer-content">
         
             <!-- Footer Image (Right Side) -->
              <a href="{{ url_for('index') }}">
