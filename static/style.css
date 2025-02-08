@@ -126,7 +126,7 @@ header {
     display: flex;
     align-items: center;
     gap: 10px;
-    margin-right: 380px;
+    margin-right: 330px;
 }
 .search-form input[type="text"] {
     padding: 5px 10px;
@@ -583,6 +583,18 @@ body{
     }
 }
 
+.c-rounded--top {
+    bottom: calc(100% - 1px);
+}
+.c-rounded {
+    left: 0;
+    line-height: 0;
+    position: absolute;
+    width: 100%;
+    z-index: 12;
+}
+
+
 .blog-section {
     background: #FFE000;
     padding: 60px 20px;
@@ -646,7 +658,6 @@ body{
 .blog-btn:hover {
     background-color: #FFDD00;
     color: #005ca8;
-    border: 1px solid #0056A6;
 }
 
 .blog-main-card {
