@@ -6,11 +6,11 @@
 	font-family: Alibaba;
 	font-style: normal;
 	font-weight: normal;
-	src: url('fonts/eot/Alibaba-Regular.eot');
-	src: url('fonts/eot/Alibaba-Regular.eot?#iefix') format('embedded-opentype'),
-		 url('fonts/woff2/Alibaba-Regular.woff2') format('woff2'),
-		 url('fonts/woff/Alibaba-Regular.woff') format('woff'),
-		 url('fonts/ttf/Alibaba-Regular.ttf') format('truetype');
+	src: url('../fonts/eot/Alibaba-Regular.eot');
+	src: url('../fonts/eot/Alibaba-Regular.eot?#iefix') format('embedded-opentype'),
+		 url('../fonts/woff2/Alibaba-Regular.woff2') format('woff2'),
+		 url('../fonts/woff/Alibaba-Regular.woff') format('woff'),
+		 url('../fonts/ttf/Alibaba-Regular.ttf') format('truetype');
 }
 
 

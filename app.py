@@ -1,5 +1,6 @@
 from flask import Flask, render_template, request, url_for
 from flask_babel import Babel, _
+import re
 
 app = Flask(__name__)
 
@@ -8,6 +9,11 @@ app.config['LANGUAGES'] = ['en', 'fa']  # English and Persian
 app.config['BABEL_DEFAULT_LOCALE'] = 'fa' # Default language is Persian
 
 babel = Babel(app)
+
+# Function to generate slugs from titles
+def generate_slug(title):
+    # print(re.sub(r'\s+', '-', title.strip()).lower())
+    return re.sub(r'\s+', '-', title.strip()).lower()
 
 # Blog data including latest blog as part of the list
 blog_posts = [
@@ -57,6 +63,11 @@ blog_posts = [
         "reading_time": "3 دقیقه"
     }
 ]
+
+# Add slug field dynamically
+for post in blog_posts:
+    post["slug"] = generate_slug(post["title"])
+
 # Function to get the current locale
 def get_locale():
     return request.args.get('lang', app.config['BABEL_DEFAULT_LOCALE'])
@@ -84,10 +95,17 @@ def blog():
     direction = get_direction(lang)  # Determine the text direction
     return render_template('blog.html', lang=lang, direction=direction, blog_posts=blog_posts)
 
-@app.route('/blog/<int:post_id>')
-def show_post(post_id):
-    post = next(post for post in blog_posts if post['id'] == post_id)
-    return render_template('blog_post.html', blog_post=post)
+@app.route('/blog/<slug>')
+def blog_post(slug):
+    lang = get_locale()  # Get the current language
+    direction = get_direction(lang)  # Determine the text direction
+    # Find the requested blog post by slug
+    post = next((p for p in blog_posts if p["slug"] == slug), None)
+    
+    if post is None:
+        return "Blog post not found", 404
+
+    return render_template('blog_post.html', post=post, lang=lang, direction=direction)
 
 @app.route('/search')
 def search():

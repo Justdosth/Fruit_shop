@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ _('چاتابا') }}</title>
     <link rel="icon" href="/static/images/logo.png" type="image/x-icon">
-    <link rel="stylesheet" href="static/style.css">
+    <link rel="stylesheet" href="static/css/style.css">
     <!-- Mobile Stylesheet -->
     <link rel="stylesheet" href="static/style-mobile.css" media="screen and (max-width: 768px)">
     <!-- Linking google fonts for icons-->
@@ -52,7 +52,7 @@
                     <img src="https://flagsapi.com/{{ 'US' if lang == 'fa' else 'IR' }}/shiny/32.png" alt="{{ _('Change Language') }}">
                 </a>
             </div>
-            
+
         </div>
     </header>
     <div class="slogan-wrapper">
@@ -169,7 +169,7 @@
 
         <!-- Featured Blog Card (Latest Blog Post) -->
         <div class="blog-main-card">
-            <a href="{{ latest_blog['link'] }}">
+            <a href="blog/{{ latest_blog['slug'] }}" target="_blank" rel="noopener noreferrer">
                 <div class="blog-image-wrapper">
                     <img src="{{ latest_blog['image'] }}" alt="{{ latest_blog['title'] }}">
                 </div>
@@ -192,7 +192,7 @@
     <!-- Other Blog Cards -->
     <div class="blog-cards-container">
         {% for blog in blogs[1:5] %}
-            <a href="{{ blog['link'] }}">
+            <a href="blog/{{ blog['slug'] }}" target="_blank" rel="noopener noreferrer">
                 <div class="blog-card">
                     <div class="blog-image-wrapper">
                         <img src="{{ blog['image'] }}" alt="{{ blog['title'] }}">
