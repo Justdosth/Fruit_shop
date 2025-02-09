@@ -32,6 +32,9 @@
     flex-wrap: wrap;
     margin: 0;
     padding: 0;
+    background-color: #fadf49;
+    border-radius: 20px;
+    padding: 4px 16px 2px;
 }
 
 /* Breadcrumb Item */
