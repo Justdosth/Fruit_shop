@@ -69,7 +69,7 @@
 
         <section class="blog-banner position-relative">
             <!-- Background Image -->
-            <div class="blog-banner-bg" style="background-image: url('{{ post.image }}');"></div>
+            <div class="blog-banner-bg"></div>
             
             <!-- Overlay -->
             <div class="blog-banner-overlay"></div>
@@ -77,18 +77,30 @@
             <!-- Content Container -->
             <div class="container position-relative text-white text-center">
                 <!-- Breadcrumb -->
-                <div class="c-breadcrumbs__wrap text-start mb-3">
-                    <ul class="breadcrumb">
-                        <li class="breadcrumb-item">
-                            <a href="{{ url_for('index') }}">
-                                <svg width="15" height="15" viewBox="0 0 15 15" fill="none">
-                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M7.5 0.750183L15 6.70607H13.2726V14.2497H10.1627V14.2498H4.96655V14.2497H1.72559V6.70607H0L7.5 0.750183Z" fill="#fff"></path>
-                                </svg>
-                            </a>
-                        </li>
-                        <li class="breadcrumb-item"><a href="{{ url_for('blog') }}">Blog</a></li>
-                        <li class="breadcrumb-item active" aria-current="page">{{ post.title }}</li>
-                    </ul>
+                <div class="c-breadcrumbs__wrap">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="c-breadcrumbs">
+                                    <ul class="c-breadcrumbs__list">
+                                        <li class="c-breadcrumbs__item">
+                                            <a href="{{ url_for('index') }}" class="c-breadcrumbs__link">
+                                                <svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M7.5 0.750183L15 6.70607H13.2726V14.2497H10.1627V14.2498H4.96655V14.2497H1.72559V6.70607H0L7.5 0.750183Z" fill="#275DA3"></path>
+                                                </svg>
+                                            </a>
+                                        </li>
+                                        <li class="c-breadcrumbs__item">
+                                            <a href="{{ url_for('blog') }}" class="c-breadcrumbs__link">وبلاگ</a>
+                                        </li>
+                                        <li class="c-breadcrumbs__item">
+                                            <a href="javascript:void(0);" class="c-breadcrumbs__link">{{ post['title'] }}</a>
+                                        </li>
+                                    </ul> 
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
         
                 <!-- Blog Title & Meta -->
@@ -102,31 +114,7 @@
             </div>
         </section>
         
-        <div class="c-breadcrumbs__wrap">
-            <div class="container">
-                <div class="row">
-                    <div class="col-12">
-                        <div class="c-breadcrumbs">
-                            <ul class="c-breadcrumbs__list">
-                                <li class="c-breadcrumbs__item">
-                                    <a href="{{ url_for('index') }}" class="c-breadcrumbs__link">
-                                        <svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                            <path fill-rule="evenodd" clip-rule="evenodd" d="M7.5 0.750183L15 6.70607H13.2726V14.2497H10.1627V14.2498H4.96655V14.2497H1.72559V6.70607H0L7.5 0.750183Z" fill="#275DA3"></path>
-                                        </svg>
-                                    </a>
-                                </li>
-                                <li class="c-breadcrumbs__item">
-                                    <a href="{{ url_for('blog') }}" class="c-breadcrumbs__link">وبلاگ</a>
-                                </li>
-                                <li class="c-breadcrumbs__item">
-                                    <a href="javascript:void(0);" class="c-breadcrumbs__link">{{ post['title'] }}</a>
-                                </li>
-                            </ul> 
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+
         
         <article class="blog-content">
             <img src="{{ post.image }}" alt="{{ post.title }}" class="blog-image">
