@@ -6,11 +6,11 @@
 	font-family: Alibaba;
 	font-style: normal;
 	font-weight: normal;
-	src: url('fonts/eot/Alibaba-Regular.eot');
-	src: url('fonts/eot/Alibaba-Regular.eot?#iefix') format('embedded-opentype'),
-		 url('fonts/woff2/Alibaba-Regular.woff2') format('woff2'),
-		 url('fonts/woff/Alibaba-Regular.woff') format('woff'),
-		 url('fonts/ttf/Alibaba-Regular.ttf') format('truetype');
+	src: url('../fonts/eot/Alibaba-Regular.eot');
+	src: url('../fonts/eot/Alibaba-Regular.eot?#iefix') format('embedded-opentype'),
+		 url('../fonts/woff2/Alibaba-Regular.woff2') format('woff2'),
+		 url('../fonts/woff/Alibaba-Regular.woff') format('woff'),
+		 url('../fonts/ttf/Alibaba-Regular.ttf') format('truetype');
 }
 
 
@@ -126,7 +126,7 @@ header {
     display: flex;
     align-items: center;
     gap: 10px;
-    margin-right: 380px;
+    margin-right: 330px;
 }
 .search-form input[type="text"] {
     padding: 5px 10px;
@@ -582,6 +582,10 @@ body{
         transform: translateX(0); /* Center the cards on small screens */
     }
 }
+<<<<<<< HEAD:static/style.css
+=======
+
+>>>>>>> 95a2df31ae346e386fa933c002e8aac836feb549:static/css/style.css
 .c-rounded--top {
     bottom: calc(100% - 1px);
 }
@@ -592,6 +596,11 @@ body{
     width: 100%;
     z-index: 12;
 }
+<<<<<<< HEAD:static/style.css
+=======
+
+
+>>>>>>> 95a2df31ae346e386fa933c002e8aac836feb549:static/css/style.css
 .blog-section {
     background: #FFE000;
     padding: 60px 20px;
@@ -655,7 +664,6 @@ body{
 .blog-btn:hover {
     background-color: #FFDD00;
     color: #005ca8;
-    border: 1px solid #0056A6;
 }
 
 .blog-main-card {

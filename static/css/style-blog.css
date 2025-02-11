@@ -1,0 +1,117 @@
+@font-face {
+	font-family: Alibaba;
+	font-style: normal;
+	font-weight: normal;
+	src: url('fonts/eot/Alibaba-Regular.eot');
+	src: url('fonts/eot/Alibaba-Regular.eot?#iefix') format('embedded-opentype'),
+		 url('fonts/woff2/Alibaba-Regular.woff2') format('woff2'),
+		 url('fonts/woff/Alibaba-Regular.woff') format('woff'),
+		 url('fonts/ttf/Alibaba-Regular.ttf') format('truetype');
+}
+
+* {
+    box-sizing: border-box;
+    font-family: 'Alibaba', Arial, sans-serif;
+}
+
+/* Breadcrumbs Wrapper */
+.c-breadcrumbs__wrap {
+    padding: 15px 160px;
+}
+
+/* Breadcrumb Container */
+.c-breadcrumbs {
+    display: flex;
+    align-items: center;
+}
+
+/* Breadcrumb List */
+.c-breadcrumbs__list {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0;
+    padding: 0;
+    background-color: #fadf49;
+    border-radius: 20px;
+    padding: 4px 16px 2px;
+}
+
+/* Breadcrumb Item */
+.c-breadcrumbs__item {
+    font-size: 14px;
+    font-weight: 500;
+    color: #004075; /* Blue color */
+}
+
+/* Breadcrumb Links */
+.c-breadcrumbs__link {
+    text-decoration: none;
+    color: #004075;
+    transition: color 0.3s ease;
+}
+
+.c-breadcrumbs__link:hover {
+    color: #005ca8; /* Darker blue on hover */
+}
+
+/* Breadcrumb Separator (Arrow) */
+.c-breadcrumbs__item:not(:last-child)::after {
+    content: "‣";
+    margin: 0 8px;
+    color: #004075;
+    font-size: 14px;
+}
+
+/* Active (Current) Breadcrumb */
+.c-breadcrumbs__item:last-child .c-breadcrumbs__link {
+    color: #6c757d; /* Gray for the active page */
+    pointer-events: none; /* Disable link */
+    cursor: default;
+}
+
+
+.blog-banner {
+    height: 50vh; /* Adjust banner height */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    position: relative;
+    color: #004075;
+    overflow: hidden;
+}
+
+.blog-banner-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    filter: brightness(0.6); /* Darkens the image */
+    background-image: url('../images/blog1.jpg') }}");
+}
+
+.blog-banner-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.4); /* Semi-transparent overlay */
+}
+
+.blog-banner-content {
+    position: relative;
+    z-index: 2;
+}
+
+.breadcrumb {
+    background: transparent;
+    padding: 0;
+    display: inline-block;
+}
+
