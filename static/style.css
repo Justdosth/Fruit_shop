@@ -582,7 +582,16 @@ body{
         transform: translateX(0); /* Center the cards on small screens */
     }
 }
-
+.c-rounded--top {
+    bottom: calc(100% - 1px);
+}
+.c-rounded {
+    left: 0;
+    line-height: 0;
+    position: absolute;
+    width: 100%;
+    z-index: 12;
+}
 .blog-section {
     background: #FFE000;
     padding: 60px 20px;
