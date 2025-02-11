@@ -105,8 +105,8 @@ def blog_post(slug):
     if post is None:
         return "Blog post not found", 404
 
-    # post.image = post.image[:-4] + "-" + post.image[-5] + ".jpg" # Modify image path
-    print(post["image"])
+    if post["image"][-3:] == "jpg":
+       post["image"] = post["image"][:-4] + "-" + post["image"][-5] + ".png" # Modify image path
     return render_template('blog_post.html', post=post, lang=lang, direction=direction)
 
 @app.route('/search')

@@ -95,7 +95,7 @@
 
         <section class="blog-banner position-relative">
             <!-- Background Image -->
-            <div class="blog-banner-bg" style="background-image: url('{{ url_for('static', filename=post.image[6:]) }}');"></div>
+            <img src="/{{ post.image }}" alt="{{ post.title }}" class="blog-banner-bg"></div>
             
             <!-- Overlay -->
             <div class="blog-banner-overlay"></div>
