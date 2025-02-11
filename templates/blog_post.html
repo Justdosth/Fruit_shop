@@ -66,52 +66,55 @@
 
     <main class="blog-post-container">
 
+        <!-- Breadcrumb -->
+        <div class="c-breadcrumbs__wrap">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="c-breadcrumbs">
+                            <ul class="c-breadcrumbs__list">
+                                <li class="c-breadcrumbs__item">
+                                    <a href="{{ url_for('index') }}" class="c-breadcrumbs__link">
+                                        <svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path fill-rule="evenodd" clip-rule="evenodd" d="M7.5 0.750183L15 6.70607H13.2726V14.2497H10.1627V14.2498H4.96655V14.2497H1.72559V6.70607H0L7.5 0.750183Z" fill="#275DA3"></path>
+                                        </svg>
+                                    </a>
+                                </li>
+                                <li class="c-breadcrumbs__item">
+                                    <a href="{{ url_for('blog') }}" class="c-breadcrumbs__link">وبلاگ</a>
+                                </li>
+                                <li class="c-breadcrumbs__item">
+                                    <a href="javascript:void(0);" class="c-breadcrumbs__link">{{ post['title'] }}</a>
+                                </li>
+                            </ul> 
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
 
         <section class="blog-banner position-relative">
             <!-- Background Image -->
-            <div class="blog-banner-bg"></div>
+            <div class="blog-banner-bg" style="background-image: url('{{ url_for('static', filename=post.image[6:]) }}');"></div>
             
             <!-- Overlay -->
             <div class="blog-banner-overlay"></div>
         
             <!-- Content Container -->
             <div class="container position-relative text-white text-center">
-                <!-- Breadcrumb -->
-                <div class="c-breadcrumbs__wrap">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-12">
-                                <div class="c-breadcrumbs">
-                                    <ul class="c-breadcrumbs__list">
-                                        <li class="c-breadcrumbs__item">
-                                            <a href="{{ url_for('index') }}" class="c-breadcrumbs__link">
-                                                <svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M7.5 0.750183L15 6.70607H13.2726V14.2497H10.1627V14.2498H4.96655V14.2497H1.72559V6.70607H0L7.5 0.750183Z" fill="#275DA3"></path>
-                                                </svg>
-                                            </a>
-                                        </li>
-                                        <li class="c-breadcrumbs__item">
-                                            <a href="{{ url_for('blog') }}" class="c-breadcrumbs__link">وبلاگ</a>
-                                        </li>
-                                        <li class="c-breadcrumbs__item">
-                                            <a href="javascript:void(0);" class="c-breadcrumbs__link">{{ post['title'] }}</a>
-                                        </li>
-                                    </ul> 
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
         
                 <!-- Blog Title & Meta -->
                 <div class="blog-banner-content">
                     <h1 class="fw-bold">{{ post.title }}</h1>
                     <p class="blog-meta">
-                        <span class="text-light">Published on: {{ post.date }}</span> | 
-                        <span class="text-light">Reading Time: {{ post.read_time }} min</span>
+                        <span class="text-light">{{ post.date }}</span> . 
+                        <span class="text-light">{{ post.reading_time }}</span>
                     </p>
                 </div>
             </div>
+            <svg version="1.1" xmlns="https://www.w3.org/2000/svg" xmlns:xlink="https://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 1440 33" style="enable-background:new 0 0 1440 33;" xml:space="preserve" preserveAspectRatio="none">
+                <path d="M1440,0c0,0-361.2,33-720,33C361.2,33,0,0,0,0v33l720-1l720,1V0z" style="fill:currentColor;fill-rule:evenodd;clip-rule:evenodd;"></path>
+            </svg>
         </section>
         
 
@@ -128,6 +131,7 @@
                 {% endfor %}
             </div>
         </article>
+
     </main>
 
     <footer>

@@ -16,7 +16,9 @@
 
 /* Breadcrumbs Wrapper */
 .c-breadcrumbs__wrap {
+    position: absolute;
     padding: 15px 160px;
+    z-index: 2;
 }
 
 /* Breadcrumb Container */
@@ -57,10 +59,11 @@
 
 /* Breadcrumb Separator (Arrow) */
 .c-breadcrumbs__item:not(:last-child)::after {
-    content: "‣";
+    content: "›";
     margin: 0 8px;
     color: #004075;
-    font-size: 14px;
+    font-size: 16px;
+    font-family: 'Times New Roman', Times, serif;
 }
 
 /* Active (Current) Breadcrumb */
@@ -72,7 +75,7 @@
 
 
 .blog-banner {
-    height: 50vh; /* Adjust banner height */
+    height: 100vh; /* Adjust banner height */
     display: flex;
     align-items: center;
     justify-content: center;
@@ -91,8 +94,6 @@
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    filter: brightness(0.6); /* Darkens the image */
-    background-image: url('../images/blog1.jpg') }}");
 }
 
 .blog-banner-overlay {
@@ -107,6 +108,7 @@
 .blog-banner-content {
     position: relative;
     z-index: 2;
+    margin: 5px 10px;
 }
 
 .breadcrumb {
@@ -114,4 +116,3 @@
     padding: 0;
     display: inline-block;
 }
-
