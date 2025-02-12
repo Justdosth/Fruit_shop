@@ -109,6 +109,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    width: 65%;
 }
 
 .blog-banner-content {
@@ -119,13 +120,10 @@
 
 .blog-banner-content {
     background-color: rgba(255, 224, 0, .8);
-    margin-left: -15px;
-    margin-right: -15px;
-    padding: 42px 30px 30px;
     border-radius: 8px;
     position: relative;
-    width: 100%;
     z-index: 1;
+    width: 100%;
 }
 
 .fw-bold {
@@ -133,9 +131,87 @@
     font-weight: 600;
     line-height: 1.25;
     border-bottom: 1px solid #fff0a4;
+    padding: 42px 30px 30px;
 }
 
+.blog-content-extra {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 16px 24px;
+}
 
+.tags {
+    width: 25%;
+    display: flex;
+    justify-content: flex-start;
+}
+.tag {
+    background-color: #ffe000;
+    border-radius: 10px;
+    color: #005ca8;
+    display: inline-flex;
+    font-size: .7rem;
+    font-weight: 600;
+    letter-spacing: .6px;
+    line-height: 1.2;
+    padding: 5px 15px 5px;
+    text-align: center;
+    text-transform: uppercase;
+    margin-left: 5px;
+}
+.c-share {
+    position: relative;
+    z-index: 2;
+    width: 25%;
+    display: inline-flex;
+    justify-content: flex-end;
+}
+.c-button--share {
+    color: #005ca8;
+    cursor: pointer;
+    display: inline-flex;
+    justify-content: flex-end;
+    font-size: .75rem;
+    font-weight: 600;
+    letter-spacing: .8px;
+    line-height: 1.2;
+    text-transform: uppercase;
+    white-space: nowrap;
+}
+
+.c-button--share-icon {
+    color: #005ca8;
+    display: inline-block;
+    height: 16px;
+    margin-right: 8px;
+    position: relative;
+    top: 4px;
+    width: 20px;
+}
+.c-share__buttons {
+    height: 0;
+    left: 0;
+    overflow: hidden;
+    position: absolute;
+    top: 0;
+    transform: translateX(-100%);
+    transition-delay: .3s;
+    z-index: -5;
+}
+.blog-meta {
+    font-size: .75rem;
+    font-weight: 500;
+    line-height: 1.3;
+    margin-bottom: 0;
+    width: 50%;
+    transition: opacity .05s ease .15s;
+}
+.blog-meta.hide {
+    opacity: 0;
+    transition: opacity .05s ease 0s;
+    z-index: -5;
+}
 .c-rounded--white {
     color: #fff;
 }
