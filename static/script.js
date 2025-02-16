@@ -139,3 +139,11 @@ document.addEventListener('DOMContentLoaded', () => {
     setupOutsideClickListener();
     animateSloganText();
 });
+
+function copyToClipboard(text) {
+    navigator.clipboard.writeText(text).then(function() {
+        alert("🔗 Link copied to clipboard!");
+    }).catch(function(error) {
+        console.error("Copy failed:", error);
+    });
+}

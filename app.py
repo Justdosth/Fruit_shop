@@ -1,6 +1,7 @@
 from flask import Flask, render_template, request, url_for
 from flask_babel import Babel, _
 import re
+import os
 
 app = Flask(__name__)
 
@@ -15,13 +16,29 @@ def generate_slug(title):
     # print(re.sub(r'\s+', '-', title.strip()).lower())
     return re.sub(r'\s+', '-', title.strip()).lower()
 
+# Function to load description from file
+def load_description(post_number):
+    # Get the current working directory (where the script is running)
+    current_directory = os.getcwd()
+    
+    # Build the path relative to the current working directory
+    file_path = os.path.join(current_directory, f"static\content\description{post_number}.html")
+    
+    # Check if the file exists
+    if os.path.exists(file_path):
+        with open(file_path, 'r', encoding='utf-8') as file:
+            return file.read().strip()
+    else:
+        print(file_path)
+        return "No description available"
+
 # Blog data including latest blog as part of the list
 blog_posts = [
     {
         "title": "عنوان مقاله ویژه",
         "image": "static/images/featured-blog.jpg",
         "link": "/blog/latest",
-        "description": "توضیح کوتاه درباره این مقاله ویژه. اطلاعات مفید و خواندنی.",
+        "description": load_description(0),  # Load description from description0 file
         "tags": ["ویژه", "مهم"],
         "date": "12 بهمن 1402",
         "reading_time": "5 دقیقه"
@@ -30,7 +47,7 @@ blog_posts = [
         "title": "مقاله ۱",
         "image": "static/images/blog1.jpg",
         "link": "/blog/1",
-        "description": "توضیح مختصر درباره مقاله ۱.",
+        "description": load_description(1),  # Load description from description1 file
         "tags": ["تکنولوژی", "کسب و کار"],
         "date": "10 بهمن 1402",
         "reading_time": "4 دقیقه"
@@ -39,7 +56,7 @@ blog_posts = [
         "title": "مقاله ۲",
         "image": "static/images/blog2.jpg",
         "link": "/blog/2",
-        "description": "نگاهی به جدیدترین روندهای طراحی.",
+        "description": load_description(2),  # Load description from description2 file
         "tags": ["طراحی", "خلاقیت"],
         "date": "8 بهمن 1402",
         "reading_time": "6 دقیقه"
@@ -48,7 +65,7 @@ blog_posts = [
         "title": "مقاله ۳",
         "image": "static/images/blog3.jpg",
         "link": "/blog/3",
-        "description": "نکات مهم برای موفقیت در بازاریابی.",
+        "description": load_description(3),  # Load description from description3 file
         "tags": ["بازاریابی", "استارتاپ"],
         "date": "6 بهمن 1402",
         "reading_time": "7 دقیقه"
@@ -57,7 +74,7 @@ blog_posts = [
         "title": "مقاله ۴",
         "image": "static/images/blog4.jpg",
         "link": "/blog/4",
-        "description": "راهنمای کامل یادگیری برنامه‌نویسی.",
+        "description": load_description(4),  # Load description from description4 file
         "tags": ["برنامه‌نویسی", "آموزش"],
         "date": "4 بهمن 1402",
         "reading_time": "3 دقیقه"
@@ -105,9 +122,12 @@ def blog_post(slug):
     if post is None:
         return "Blog post not found", 404
 
-    if post["image"][-3:] == "jpg":
-       post["image"] = post["image"][:-4] + "-" + post["image"][-5] + ".png" # Modify image path
-    return render_template('blog_post.html', post=post, lang=lang, direction=direction)
+    if "imageBlog" not in post:
+       post["imageBlog"] = post["image"][:-4] + "-" + post["image"][-5] + ".png" # Modify image path
+
+    post_url = url_for('blog_post', slug=slug, _external=True)
+
+    return render_template('blog_post.html', post=post, post_url=post_url, lang=lang, direction=direction)
 
 @app.route('/search')
 def search():
