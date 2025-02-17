@@ -123,7 +123,7 @@ def blog_post(slug):
         return "Blog post not found", 404
 
     if "imageBlog" not in post:
-       post["imageBlog"] = post["image"][:-4] + "-" + post["image"][-5] + ".png" # Modify image path
+       post["imageBlog"] = post["image"][:-4] + "-" + post["image"][-5] + post["image"][-4:] # Modify image path
 
     post_url = url_for('blog_post', slug=slug, _external=True)
 

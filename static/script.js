@@ -147,3 +147,4 @@ function copyToClipboard(text) {
         console.error("Copy failed:", error);
     });
 }
+

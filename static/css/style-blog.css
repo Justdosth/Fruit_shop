@@ -244,27 +244,20 @@
 
 .blog-content {
     max-width: 100%;
-    display: flex;
+    display: inline-flex;
     flex-wrap: wrap;
     flex-direction: row;
     margin-top: 45px;
     position: relative;
 }
 
-#blog-description {
-    margin-left: 250px;
-    margin-right: 250px;
-    padding-left: 15px;
-    padding-right: 15px;
-    width: 100%;
-}
-
 .c-social-share-float {
+    position: sticky;
+    scroll-behavior: smooth;
     height: calc(100% - 100px);
     right: 0;
-    position: absolute;
     top: 40px;
-    width: 150px;
+    width: 200px;
     z-index: 5;
 }
 
@@ -277,17 +270,180 @@
 }
 
 .c-social-share__label {
-    font-size: .75rem;
+    font-size: .65rem;
     font-weight: 600;
     letter-spacing: .8px;
     line-height: 2.5;
     text-transform: uppercase;
     width: 30px;
+    margin-top: 45px;
 }
 
 .c-social-share__label span {
     display: inline-block;
-    transform: translateY(100%) rotate(-90deg);
+    position: relative;
+    transform:  translateX(58%) translateY(10%) rotate(-90deg);
     transform-origin: 0 0;
     white-space: nowrap;
+    color: #005ca8;
+}
+
+.ss-inline-share-wrapper {
+    padding-top: 40px;
+}
+
+.ss-inline-share-wrapper:before {
+    background-color: #ffe000;
+    content: "";
+    height: 34px;
+    left: 50%;
+    position: absolute;
+    top: 13px;
+    width: 1px;
+}
+
+.ss-inline-share-wrapper .ss-inline-share-content {
+    display: inline-flex;
+    align-items: center;
+}
+
+.c-social-share__buttons .ss-social-icons-container {
+    display: inline-block;
+    margin: 0 !important;
+    padding: 0;
+    list-style: none;
+}
+
+.ss-inline-share-wrapper.ss-with-spacing .ss-social-icons-container>li {
+    float: right;
+    margin: 0 0px 6px 0 !important;
+}
+
+.ss-inline-share-wrapper .ss-social-icons-container>li>a {
+    display: inline-flex;
+    fill: #fff !important;
+    border-radius: 52px;
+    overflow: hidden;
+    padding: 0;
+    background-color: #005ca8;
+    box-sizing: content-box;
+    position: relative;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    line-height: 42px;
+    vertical-align: middle;
+    font-size: 16px;
+    text-decoration: none !important;
+}
+.ss-inline-share-wrapper .ss-social-icons-container>li>a:hover {
+    background-color: #004075;
+}
+.c-social-share__buttons .ss-social-icons-container li a i {
+    line-height: 32px;
+    min-width: 24px !important;
+    width: 24px !important;
+}
+
+.ss-inline-share-wrapper.ss-small-icons .ss-social-icons-container>li>a svg {
+    height: 16px;
+    z-index: 1;
+    margin-top: 15px;
+}
+
+.ss-inline-share-wrapper .ss-social-icons-container>li>a .ss-copy-color {
+    background-color: #6c757d;
+}
+
+.ss-inline-share-wrapper .ss-social-icons-container>li>a .ss-copy-color:hover {
+    background-color: #323B43;
+}
+
+#toc {
+    position: sticky;
+    background-color: transparent;
+    box-shadow: none;
+    padding: 0;
+    top: 150px;
+    transform: none;
+    z-index: 6;
+    margin-top: 110px;
+    max-height: 140px;
+    overflow: auto;
+    margin-right: -40px;
+}
+
+#toc ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+#toc li:not(:last-child) {
+    margin-bottom: 16px;
+}
+
+#toc li {
+    position: relative;
+    cursor: pointer;
+    font-size: .875rem;
+    font-weight: 400;
+    height: 18px;
+    line-height: 1.2;
+    list-style-type: none;
+}
+
+#toc li.active,
+#toc li:hover {
+    font-weight: 600;
+}
+
+#toc li a {
+    display: block;
+    padding-right: 13px;
+    text-decoration: none !important;
+    color: #005ca8;
+}
+
+#toc li a:before {
+    box-sizing: border-box;
+    border: 1px solid #005ca8;
+    border-radius: 50%;
+    content: "";
+    display: block;
+    height: 7px;
+    right: 0;
+    position: absolute;
+    top: 4px;
+    width: 7px;
+}
+
+#toc li a:hover:before {
+    background-color: #005ca8; /* Fill bullet on hover */
+}
+
+#blog-description {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    flex: wrap;
+    flex: 0 0 50%;
+    margin-top: -300px;
+    margin-left: 400px;
+    margin-right: 400px;
+    padding-left: 15px;
+    padding-right: 15px;
+    width: 100%;
+}
+
+.c-spacer--80 {
+    height: 80px;
+}
+
+.section h3 {
+    color: #005ca8;
+    font-size: 1.625rem;
+    font-weight: 600;
+    line-height: 1.3;
+    margin-bottom: 10px;
 }
