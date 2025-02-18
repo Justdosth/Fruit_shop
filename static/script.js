@@ -1,3 +1,32 @@
+// Function to update the active section in the TOC
+function updateActiveSection() {
+    const sections = document.querySelectorAll("#blog-description h3");
+    const tocLinks = document.querySelectorAll("#toc li"); // Select li elements directly
+
+    let index = sections.length - 1;
+
+    // Loop through each section to find the one in view
+    for (let i = 0; i < sections.length; i++) {
+        const rect = sections[i].getBoundingClientRect();
+        if (rect.top >= 0 && rect.top <= window.innerHeight / 3) {
+            index = i;
+            break;
+        }
+    }
+
+    // Remove the 'active' class from all TOC links
+    tocLinks.forEach(link => {
+        // Ensure link has a valid parent element before accessing it
+        if (link) {
+            link.classList.remove("active");
+        }
+    });
+
+    // Add 'active' class to the corresponding TOC link
+    if (tocLinks[index]) {
+        tocLinks[index].classList.add("active");
+    }
+}
 // Toggle Hamburger Menu
 function toggleHamburgerMenu() {
     const hamburgerMenu = document.querySelector('.hamburger-menu');
@@ -138,6 +167,11 @@ document.addEventListener('DOMContentLoaded', () => {
     setupNavbarLinks();
     setupOutsideClickListener();
     animateSloganText();
+    // Initial call to set active state when the page loads
+    updateActiveSection();
+
+    // Attach the scroll event listener to call the function
+    window.addEventListener("scroll", updateActiveSection);
 });
 
 function copyToClipboard(text) {
@@ -147,6 +181,7 @@ function copyToClipboard(text) {
         console.error("Copy failed:", error);
     });
 }
+
 
 
 
