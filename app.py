@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, url_for
+from flask import Flask, render_template, request, url_for, jsonify
 from flask_babel import Babel, _
 import re
 import os
@@ -39,7 +39,7 @@ blog_posts = [
         "image": "static/images/featured-blog.jpg",
         "link": "/blog/latest",
         "description": load_description(0),  # Load description from description0 file
-        "tags": ["ویژه", "مهم"],
+        "tags": ["ویژه", "مهم", "خبر"],
         "date": "12 بهمن 1402",
         "reading_time": "5 دقیقه"
     },
@@ -48,7 +48,7 @@ blog_posts = [
         "image": "static/images/blog1.jpg",
         "link": "/blog/1",
         "description": load_description(1),  # Load description from description1 file
-        "tags": ["تکنولوژی", "کسب و کار"],
+        "tags": ["تکنولوژی", "کسب و کار", "خبر"],
         "date": "10 بهمن 1402",
         "reading_time": "4 دقیقه"
     },
@@ -57,7 +57,7 @@ blog_posts = [
         "image": "static/images/blog2.jpg",
         "link": "/blog/2",
         "description": load_description(2),  # Load description from description2 file
-        "tags": ["طراحی", "خلاقیت"],
+        "tags": ["طراحی", "خلاقیت", "خبر"],
         "date": "8 بهمن 1402",
         "reading_time": "6 دقیقه"
     },
@@ -66,7 +66,7 @@ blog_posts = [
         "image": "static/images/blog3.jpg",
         "link": "/blog/3",
         "description": load_description(3),  # Load description from description3 file
-        "tags": ["بازاریابی", "استارتاپ"],
+        "tags": ["بازاریابی", "استارتاپ", "خبر"],
         "date": "6 بهمن 1402",
         "reading_time": "7 دقیقه"
     },
@@ -76,6 +76,15 @@ blog_posts = [
         "link": "/blog/4",
         "description": load_description(4),  # Load description from description4 file
         "tags": ["برنامه‌نویسی", "آموزش"],
+        "date": "4 بهمن 1402",
+        "reading_time": "3 دقیقه"
+    },
+    {
+        "title": "مقاله ۵",
+        "image": "static/images/blog4.jpg",
+        "link": "/blog/5",
+        "description": load_description(5),  # Load description from description4 file
+        "tags": ["برنامه‌نویسی", "آموزش", "خبر"],
         "date": "4 بهمن 1402",
         "reading_time": "3 دقیقه"
     }
@@ -128,6 +137,23 @@ def blog_post(slug):
     post_url = url_for('blog_post', slug=slug, _external=True)
 
     return render_template('blog_post.html', post=post, post_url=post_url, lang=lang, direction=direction)
+
+@app.route('/related-articles', methods=['GET'])
+def get_related_articles():
+    # Get the tags from the request
+    tags = request.args.get('tags', '').split(',')
+    print(tags)
+
+    if not tags or tags == ['']:
+        return jsonify([])  # Return an empty list if no tags are provided
+
+    # Filter articles that share at least one common tag
+    related_articles = [
+        post for post in blog_posts if any(tag in post["tags"] for tag in tags)
+    ]
+
+    # Limit the number of related articles (e.g., max 5)
+    return jsonify(related_articles[:5])
 
 @app.route('/search')
 def search():

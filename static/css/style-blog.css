@@ -235,6 +235,9 @@
     transition: opacity .05s ease 0s;
     z-index: -5;
 }
+.c-rounded {
+    position: relative !important;
+}
 .c-rounded--white {
     color: #fff;
 }
@@ -456,4 +459,12 @@
     margin-bottom: 32px;
     margin: 0 0 16px;
     color: #4f4f4f;
+}
+
+.related-articles-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #ffe000;
 }

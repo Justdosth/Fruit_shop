@@ -54,27 +54,51 @@
                     tocList.appendChild(listItem);
                 });
             }
-
-            // Intersection Observer to highlight TOC links when scrolling
-            const observer = new IntersectionObserver(entries => {
-                entries.forEach(entry => {
-                    const sectionId = entry.target.getAttribute("id");
-                    const tocLink = document.querySelector(`a[data-section="${sectionId}"]`);
-
-                    if (entry.isIntersecting) {
-                        document.querySelectorAll("#toc a").forEach(link => link.classList.remove("active"));
-                        tocLink.classList.add("active");
-                    }
-                });
-            }, { rootMargin: "-50px 0px -70% 0px", threshold: 0.3 });
-
-            // Observe each section
-            headers.forEach(header => observer.observe(header));
             
             // Run TOC generation after inserting the content
             generateTOC();
-
         };
+        document.addEventListener("DOMContentLoaded", function () {
+            // Get the tags from the data attribute
+            const tagsElement = document.getElementById("current-tags");
+            const currentTags = tagsElement.getAttribute("data-tags"); // Parse the JSON string into an array
+            const currentTagsString = currentTags
+                                        .replace(/\[|\]/g, '')     // Remove square brackets
+                                        .replace(/"/g, '')         // Remove double quotes
+                                        .replace(/'/g, '')         // Remove single quotes
+                                        .replace(/\s+/g, '');      // Remove any extra spaces (optional)
+            fetch(`/related-articles?tags=${currentTagsString}`)
+                .then(response => response.json())
+                .then(articles => {
+                    const sliderContainer = document.getElementById("related-articles-slider");
+
+                    articles.forEach(article => {
+                        const blogCardsHTML = articles.map(article => `
+                            <a href="${article.slug}" class="swiper-slide" target="_blank" rel="noopener noreferrer">
+                                <div class="blog-card">
+                                    <div class="blog-image-wrapper">
+                                        <img src="/${article.image}" alt="${article.title}">
+                                    </div>
+                                    <div class="blog-tags">
+                                        ${article.tags.map(tag => `<span class="blog-tag">${tag}</span>`).join("")}
+                                    </div>
+                                    <h4>${article.title}</h4>
+                                    <div class="blog-footer">
+                                        <div class="blog-date">${article.date}</div>
+                                        <div class="blog-read">${article.reading_time}</div>
+                                    </div>
+                                </div>
+                            </a>
+                        `).join(""); // Join all cards into a single HTML string
+
+                        sliderContainer.innerHTML = `<div class="blog-cards-container slider swiper-wrapper">${blogCardsHTML}</div>`; // Insert into container
+
+                        sliderContainer.appendChild(slide);
+                    });
+
+                })
+                .catch(error => console.error("Error loading related articles:", error));
+        });
     </script>
 </head>
 <body>
@@ -233,11 +257,37 @@
             </div>
         </section>
         <section class="position-relative u-white" style="background-color: #FFE000"></section>
-            <div class="c-rounded c-rounded--top noprint" style="color: #FFE000">
-                <svg version="1.1" xmlns="https://www.w3.org/2000/svg" xmlns:xlink="https://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 1440 33" style="enable-background:new 0 0 1440 33;" xml:space="preserve" preserveAspectRatio="none">
-                    <path d="M1440,32c0,0-361.2-32-720-32C361.2,0,0,32,0,32v1h1440V32z" style="fill:currentColor;fill-rule:evenodd;clip-rule:evenodd;"></path>
-                </svg>
+        <div class="c-rounded c-rounded--top noprint" style="color: #FFE000">
+            <svg version="1.1" xmlns="https://www.w3.org/2000/svg" xmlns:xlink="https://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 1440 33" style="enable-background:new 0 0 1440 33;" xml:space="preserve" preserveAspectRatio="none">
+                <path d="M1440,32c0,0-361.2-32-720-32C361.2,0,0,32,0,32v1h1440V32z" style="fill:currentColor;fill-rule:evenodd;clip-rule:evenodd;"></path>
+            </svg>
+        </div>
+        <section class="related-articles-container">
+            <div class="row align-items-center justify-content-between">
+                <div class="col-auto">
+                    <h3 class="c-intro__title--md">{{_('مقالات مرتبط')}}</h3>
+                </div>
+                <div class="col-auto">
+                    <a href="https://www.chiquita.com/blog/" class="c-link c-link__arrow">
+                        <span class="c-link__text">{{_('مشاهده تمامی مقالات')}}</span>
+                    </a>
+                </div>
             </div>
+            
+            <div class="slider-container swiper-container" id="related-articles-slider">
+                <!-- Articles will be dynamically inserted here -->
+            </div>
+                
+            <div class="slider-btn-bar">
+                <button class="slider-btn right-btn material-icons" tabindex="0" aria-label="Next slide" aria-controls="swiper-wrapper-74349b977a18a5e1" aria-disabled="false">
+                    arrow_forward
+                </button>
+                <button class="slider-btn left-btn material-icons swiper-button-disabled" tabindex="-1" aria-label="Previous slide" aria-controls="swiper-wrapper-74349b977a18a5e1" aria-disabled="true" disabled="">
+                    arrow_back
+                </button>
+            </div>
+            <span class="swiper-notification" aria-live="assertive" aria-atomic="true"></span></div>
+            <div id="current-tags" data-tags="{{ post.tags | safe }}"></div>
         </section>
     </main>
 
