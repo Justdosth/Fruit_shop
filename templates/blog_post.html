@@ -49,11 +49,28 @@
                     const link = document.createElement("a");
                     link.href = `#${id}`;
                     link.innerText = header.innerText;
+                    link.setAttribute("data-section", id);
                     listItem.appendChild(link);
                     tocList.appendChild(listItem);
                 });
             }
 
+            // Intersection Observer to highlight TOC links when scrolling
+            const observer = new IntersectionObserver(entries => {
+                entries.forEach(entry => {
+                    const sectionId = entry.target.getAttribute("id");
+                    const tocLink = document.querySelector(`a[data-section="${sectionId}"]`);
+
+                    if (entry.isIntersecting) {
+                        document.querySelectorAll("#toc a").forEach(link => link.classList.remove("active"));
+                        tocLink.classList.add("active");
+                    }
+                });
+            }, { rootMargin: "-50px 0px -70% 0px", threshold: 0.3 });
+
+            // Observe each section
+            headers.forEach(header => observer.observe(header));
+            
             // Run TOC generation after inserting the content
             generateTOC();
 
