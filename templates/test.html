@@ -1,0 +1,81 @@
+
+<script>
+window.onload = function() {
+    const description = `{{ post.description | safe }}`; 
+    document.getElementById("blog-description").innerHTML = description;
+
+    // Generate Table of Contents (TOC)
+    function generateTOC() {
+        const blogDescription = document.getElementById("blog-description");
+        const tocContainer = document.getElementById("toc");
+        tocContainer.innerHTML = "<ul></ul>"; // Table title
+
+        const tocList = tocContainer.querySelector("ul");
+        const headers = blogDescription.querySelectorAll("h3");
+
+        headers.forEach((header, index) => {
+            // Create unique ID for each <h3>
+            const id = `section-${index + 1}`;
+            header.setAttribute("id", id);
+
+            // Create TOC item
+            const listItem = document.createElement("li");
+            const link = document.createElement("a");
+            link.href = `#${id}`;
+            link.innerText = header.innerText;
+            link.setAttribute("data-section", id);
+            listItem.appendChild(link);
+            tocList.appendChild(listItem);
+        });
+    }
+    
+    // Run TOC generation after inserting the content
+    generateTOC();
+};
+document.addEventListener("DOMContentLoaded", function () {
+    // Get the tags from the data attribute
+    const tagsElement = document.getElementById("current-tags");
+    const currentTags = tagsElement.getAttribute("data-tags"); // Parse the JSON string into an array
+    const currentTagsString = currentTags
+                                .replace(/\[|\]/g, '')     // Remove square brackets
+                                .replace(/"/g, '')         // Remove double quotes
+                                .replace(/'/g, '')         // Remove single quotes
+                                .replace(/\s+/g, '');      // Remove any extra spaces (optional)
+    fetch(`/related-articles?tags=${currentTagsString}`)
+        .then(response => response.json())
+        .then(articles => {
+            const sliderContainer = document.getElementById("related-articles-slider");
+
+            articles.forEach(article => {
+                const blogCardsHTML = articles.map(article => `
+                    <a href="${article.slug}" class="blog-card service-card swiper-slide" target="_blank" rel="noopener noreferrer">
+                            <div class="blog-image-wrapper">
+                                <img src="/${article.image}" alt="${article.title}">
+                            </div>
+                            <div class="blog-tags">
+                                ${article.tags.map(tag => `<span class="blog-tag">${tag}</span>`).join("")}
+                            </div>
+                            <h4>${article.title}</h4>
+                            <div class="blog-footer">
+                                <div class="blog-date">${article.date}</div>
+                                <div class="blog-read">${article.reading_time}</div>
+                            </div>
+                    </a>
+                `).join(""); // Join all cards into a single HTML string
+
+                sliderContainer.innerHTML =  `<div class="blog-cards-container slider swiper-wrapper">${blogCardsHTML}
+                                            </div>
+                                             <div class="slider-btn-bar">
+                                                <button class="slider-btn right-btn material-icons" tabindex="0" aria-label="Next slide" aria-controls="swiper-wrapper-74349b977a18a5e1" aria-disabled="false">
+                                                    arrow_forward
+                                                </button>
+                                                <button class="slider-btn left-btn material-icons swiper-button-disabled" tabindex="-1" aria-label="Previous slide" aria-controls="swiper-wrapper-74349b977a18a5e1" aria-disabled="true" disabled="">
+                                                    arrow_back
+                                                </button>
+                                            </div>`// Insert into container
+            });
+
+        })
+        .catch(error => console.error("Error loading related articles:", error));
+});
+</script>

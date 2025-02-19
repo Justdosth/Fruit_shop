@@ -1,8 +1,8 @@
 // Function to update the active section in the TOC
 function updateActiveSection() {
     const sections = document.querySelectorAll("#blog-description h3");
-    const tocLinks = document.querySelectorAll("#toc li"); // Select li elements directly
-
+    const tocLinks = document.querySelectorAll("#toc li a"); // Select li elements directly
+    
     let index = sections.length - 1;
 
     // Loop through each section to find the one in view
@@ -43,17 +43,24 @@ function toggleHamburgerMenu() {
 
 // Initialize Swiper Slider
 function initializeSwiper() {
+    const swiperContainer = document.querySelector(".swiper-container");
+
+    if (!swiperContainer) {
+        console.warn("Swiper container not found on this page.");
+        return; // Exit function if no Swiper container exists
+    }
+
     const swiper = new Swiper('.swiper-container', {
-        slidesPerView: 1,
+        slidesPerView: "auto",
         spaceBetween: 30,
         loop: false,
         slideToClickedSlide: true,
 
-        pagination: {
-            el: '.swiper-pagination',
-            clickable: true,
-            dynamicBullets: true,
-        },
+        // pagination: {
+        //     el: '.swiper-pagination',
+        //     clickable: true,
+        //     dynamicBullets: true,
+        // },
 
         navigation: {
             nextEl: '.right-btn',
@@ -148,6 +155,12 @@ function setupOutsideClickListener() {
 // Animate Slogan Text
 function animateSloganText() {
     const slogan = document.querySelector('.slogan-section h1');
+
+    if (!slogan) {
+        console.warn("No slogan");
+        return; // Exit function if no Swiper container exists
+    }
+
     const text = slogan.textContent;
     slogan.textContent = '';
 
@@ -166,12 +179,13 @@ document.addEventListener('DOMContentLoaded', () => {
     initializeSwiper();
     setupNavbarLinks();
     setupOutsideClickListener();
-    animateSloganText();
     // Initial call to set active state when the page loads
     updateActiveSection();
-
     // Attach the scroll event listener to call the function
     window.addEventListener("scroll", updateActiveSection);
+
+    animateSloganText();
+    
 });
 
 function copyToClipboard(text) {
@@ -181,6 +195,20 @@ function copyToClipboard(text) {
         console.error("Copy failed:", error);
     });
 }
+
+document.addEventListener("DOMContentLoaded", function () {
+    const link = document.querySelector(".c-link__text");
+
+    link.addEventListener("mouseenter", function () {
+        if (!link.classList.contains("hovered")) {
+            link.classList.add("hovered");
+            link.style.setProperty("--line-opacity", "0");
+            setTimeout(() => {
+                link.style.setProperty("--line-opacity", "1");
+            }, 300); // Adjust timing for reappearance
+        }
+    });
+});
 
 
 

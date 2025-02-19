@@ -1,14 +1,3 @@
-@font-face {
-	font-family: Alibaba;
-	font-style: normal;
-	font-weight: normal;
-	src: url('fonts/eot/Alibaba-Regular.eot');
-	src: url('fonts/eot/Alibaba-Regular.eot?#iefix') format('embedded-opentype'),
-		 url('fonts/woff2/Alibaba-Regular.woff2') format('woff2'),
-		 url('fonts/woff/Alibaba-Regular.woff') format('woff'),
-		 url('fonts/ttf/Alibaba-Regular.ttf') format('truetype');
-}
-
 * {
     box-sizing: border-box;
     font-family: 'Alibaba', Arial, sans-serif;
@@ -397,8 +386,9 @@
 }
 
 .active {
-    font-weight: 600;
+    font-weight: 600 !important;
 }
+
 #toc li:hover {
     font-weight: 600;
 }
@@ -425,6 +415,9 @@
 
 #toc li a:hover:before {
     background-color: #005ca8; /* Fill bullet on hover */
+}
+#toc li a.active::before {
+    background-color: #005ca8; /* Change to the color you prefer */
 }
 
 #blog-description {
@@ -472,8 +465,86 @@
     padding-bottom: 150px;
 }
 
+.related-texts {
+    display: inline-flex;
+    justify-content: space-between;
+    width: 70%;
+    margin-top: 40px;
+}
+.col-auto a {
+    position: relative;
+    text-decoration: none;
+}
+.c-link__text {
+    color: #005ca8;
+    font-size: .85rem;
+    font-weight: 600;
+    letter-spacing: .2px;
+    line-height: 1;
+    overflow: hidden;
+    padding-bottom: 4px;
+    position: relative;
+}
+.c-link__arrow:after {
+    background-image: url(../images/arrow-right-blue.svg);
+    background-position: 50%;
+    background-repeat: no-repeat;
+    background-size: contain;
+    content: "";
+    height: 16px;
+    position: absolute;
+    right: 0;
+    top: 0;
+    transition: right .2slinear;
+    width: 18px;
+}
+.c-link__arrow {
+    padding-right: 30px;
+}
+.c-link__text {
+    position: relative;
+    display: inline-block;
+}
+.c-link__text:after {
+    background-color: #fff;
+    bottom: 0;
+    content: "";
+    height: 2px;
+    position: absolute;
+    right: 0;
+    width: 100%;
+    transform: scaleX(0);  /* Initially hidden */
+    transform-origin: left;
+    transition: transform 0.3s ease-in-out;
+}
+.c-link__text:hover::after {
+    transform: scaleX(1);  /* Draw the line */
+}
+.c-intro__title--md {
+    color: #005ca8;
+    font-size: 1.8rem;
+    font-weight: 800;
+    line-height: 1.3;
+}
 .slider-btn-bar {
     position: relative;
     background-color: inherit;
-    margin-top: 20px;
+    margin-top: 30px;
+}
+
+.slider-container {
+    width: 70%;
+    margin-top: 0;
+}
+
+.service-card {
+    flex: 0 0 30%;
+}
+
+.blog-cards-container {
+    gap: 0;
+}
+
+.blog-cards-container a{
+    display: flex;
 }

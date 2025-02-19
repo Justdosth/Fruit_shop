@@ -22,7 +22,7 @@ def load_description(post_number):
     current_directory = os.getcwd()
     
     # Build the path relative to the current working directory
-    file_path = os.path.join(current_directory, f"static\content\description{post_number}.html")
+    file_path = os.path.join(current_directory, f"static/content/description{post_number}.html")
     
     # Check if the file exists
     if os.path.exists(file_path):
@@ -48,7 +48,7 @@ blog_posts = [
         "image": "static/images/blog1.jpg",
         "link": "/blog/1",
         "description": load_description(1),  # Load description from description1 file
-        "tags": ["تکنولوژی", "کسب و کار", "خبر"],
+        "tags": ["تکنولوژی", "مهم", "کسب و کار"],
         "date": "10 بهمن 1402",
         "reading_time": "4 دقیقه"
     },
@@ -57,7 +57,7 @@ blog_posts = [
         "image": "static/images/blog2.jpg",
         "link": "/blog/2",
         "description": load_description(2),  # Load description from description2 file
-        "tags": ["طراحی", "خلاقیت", "خبر"],
+        "tags": ["طراحی", "خلاقیت"],
         "date": "8 بهمن 1402",
         "reading_time": "6 دقیقه"
     },
@@ -142,7 +142,6 @@ def blog_post(slug):
 def get_related_articles():
     # Get the tags from the request
     tags = request.args.get('tags', '').split(',')
-    print(tags)
 
     if not tags or tags == ['']:
         return jsonify([])  # Return an empty list if no tags are provided
@@ -163,6 +162,6 @@ def search():
     return render_template('search_results.html', query=query, results=results)
 
 if __name__ == "__main__":
-    with app.test_request_context():
-        print(url_for('static', filename='en'))  # Should output "/?lang=en"
+    # with app.test_request_context():
+    #     print(url_for('static', filename='en'))  # Should output "/?lang=en"
     app.run(debug=True)
