@@ -543,6 +543,7 @@
 
 .blog-cards-container {
     gap: 0;
+    justify-content: flex-start;
 }
 
 .blog-cards-container a{
